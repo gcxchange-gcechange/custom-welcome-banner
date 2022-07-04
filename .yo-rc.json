@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.15.0",
+    "libraryName": "custom-welcome-banner",
+    "libraryId": "81c44e4c-fc00-4d3d-8660-6e932f546f91",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "custom-welcome-banner",
+    "solutionShortDescription": "custom-welcome-banner description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "custom-welcome-banner-client-side-solution",
+    "id": "81c44e4c-fc00-4d3d-8660-6e932f546f91",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.15.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "custom-welcome-banner description"
+      },
+      "longDescription": {
+        "default": "custom-welcome-banner description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "custom-welcome-banner Feature",
+        "description": "The feature that activates elements of the custom-welcome-banner solution.",
+        "id": "2245e328-7e06-4d76-a0d0-45e191f3e036",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/custom-welcome-banner.sppkg"
+  }
+}
