@@ -18,7 +18,10 @@ export default class CustomWelcomeBanner extends React.Component<ICustomWelcomeB
       <section className={`${styles.customWelcomeBanner} ${hasTeamsContext ? styles.teams : ''}`}>
         <div className={styles.welcome}>
           <div className={styles.title}>{strings.WelcomeTitle}{escape(userDisplayName)}</div>
-          <div className={styles.welcomeMessage}>{strings.WelcomeMessage} </div>
+          <div className={styles.welcomeMessageContainer}>
+            <div className={styles.welcomeMessage}>{strings.WelcomeMessage} </div>
+            <div className={styles.headerBackgroundImagePlaceHolder}></div>
+          </div>
           <div className={styles.button}>
             <a href={strings.AboutGcxchangeURL} target="_blank" rel="noreferrer">{strings.AboutGcxchangeText}</a>
           </div>
