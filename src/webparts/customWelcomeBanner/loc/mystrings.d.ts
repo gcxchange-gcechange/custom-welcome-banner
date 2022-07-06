@@ -8,6 +8,7 @@ declare interface ICustomWelcomeBannerWebPartStrings {
   AppTeamsTabEnvironment: string;
 
   UserLang:string;
+  
   WelcomeTitle:PerformanceServerTiming;
   WelcomeMessage:string;
   AboutGcxchangeText:sting
