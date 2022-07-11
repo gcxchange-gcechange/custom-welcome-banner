@@ -3,7 +3,7 @@ import styles from './CustomWelcomeBanner.module.scss';
 import { ICustomWelcomeBannerProps } from './ICustomWelcomeBannerProps';
 import { escape } from '@microsoft/sp-lodash-subset';
 // import * as strings from 'CustomWelcomeBannerWebPartStrings';
-import { SelectLanguage } from  './SelectLanguage';
+import { SelectLanguage } from './SelectLanguage';
 
 
 export default class CustomWelcomeBanner extends React.Component<ICustomWelcomeBannerProps, {}> {
@@ -12,22 +12,25 @@ export default class CustomWelcomeBanner extends React.Component<ICustomWelcomeB
 
     this.state = {
       groups: [],
-      
+
     };
   }
-  
+
 
   public strings = SelectLanguage(this.props.prefLang);
   public render(): React.ReactElement<ICustomWelcomeBannerProps> {
-    const {    
+    const {
       hasTeamsContext,
       userDisplayName,
       prefLang
-    } = this.props;    
-    
+    } = this.props;
+
     return (
       <section className={`${styles.customWelcomeBanner} ${hasTeamsContext ? styles.teams : ''}`}>
-        <p>testing:{prefLang}</p>
+        <p>{
+          //testingAgain:{prefLang}
+        }
+        </p>
         <div className={styles.welcome}>
           <div className={styles.title}>{this.strings.WelcomeTitle}{escape(userDisplayName)}</div>
           <div className={styles.welcomeMessageContainer}>
@@ -41,17 +44,5 @@ export default class CustomWelcomeBanner extends React.Component<ICustomWelcomeB
       </section>
     );
   }
-  public componentDidMount (): void {
-    this._getGroups();
-    
-  }
-
-   public _getGroups = (): void => {
-  //   GroupService.getGroups().then(groups => {
-  //     this.setState({
-  //       groups: groups
-  //     });
-  //   });
-   }
 
 }
