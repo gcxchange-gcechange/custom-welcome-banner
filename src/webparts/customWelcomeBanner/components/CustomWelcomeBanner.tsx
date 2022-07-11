@@ -46,12 +46,12 @@ export default class CustomWelcomeBanner extends React.Component<ICustomWelcomeB
     
   }
 
-  public _getGroups = (): void => {
-    GroupService.getGroups().then(groups => {
-      this.setState({
-        groups: groups
-      });
-    });
-  }
+   public _getGroups = (): void => {
+  //   GroupService.getGroups().then(groups => {
+  //     this.setState({
+  //       groups: groups
+  //     });
+  //   });
+   }
 
 }
