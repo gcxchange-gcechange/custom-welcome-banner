@@ -33,6 +33,7 @@
       "officeFabricIconFontName": "Page",
       "properties": {
         "description": "CustomWelcomeBanner",
+        "prefLang":"fr-fr"
       }
     }
   ]

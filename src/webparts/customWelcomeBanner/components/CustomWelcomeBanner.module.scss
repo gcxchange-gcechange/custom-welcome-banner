@@ -2,7 +2,6 @@
 
 .customWelcomeBanner {
   overflow: hidden;
-  padding: 1em;
   color: "[theme:bodyText, default: #323130]";
   color: var(--bodyText);
   
@@ -19,6 +18,7 @@
 
 .welcome {
   text-align: left;
+  padding: 1rem;
 }
 
 .welcome .title {
@@ -30,7 +30,6 @@
   display: flex;
 
 }
-
   .welcomeMessage {
     font-size: 18px;
     font-weight: 400;
