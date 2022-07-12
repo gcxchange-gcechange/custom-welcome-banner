@@ -1,10 +1,9 @@
 # custom-welcome-banner
 
 ## Summary
+Custom welcome banner is a small web part developed using sharepoint react frame work. It is available in both English ang French languages. Language can be selected throug the property pane.
 
-Short summary on functionality and used technologies.
-
-[picture of the solution in action, if possible]
+web-part\custom-welcome-banner\src\webparts\customWelcomeBanner\assets\screenshot1.png
 
 ## Used SharePoint Framework Version
 
