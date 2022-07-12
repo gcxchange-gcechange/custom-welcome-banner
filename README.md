@@ -1,7 +1,7 @@
 # custom-welcome-banner
 
 ## Summary
-Custom welcome banner is a small web part developed using sharepoint react frame work. It is available in both English ang French languages. Language can be selected throug the property pane.
+Custom welcome banner is a small web part developed using sharepoint react Framework. It is available in both English ang French languages. Language can be selected through the property pane.
 
 ![screenshot of the property pane](./src/webparts/customWelcomeBanner/assets/screenshot1.png)
 
@@ -24,7 +24,7 @@ Custom welcome banner is a small web part developed using sharepoint react frame
 
 | Version | Date             | Comments        |
 | ------- | ---------------- | --------------- |
-| 1.0     | June, 2022 | Initial release |
+| 1.0     | July, 2022 | Initial release |
 
 ## Disclaimer
 
@@ -46,7 +46,8 @@ Custom welcome banner is a small web part developed using sharepoint react frame
 ## Features
 This Web Part illustrates the following concepts on top of the SharePoint Framework:
 * Using the SPFx context to gather the current user's display name.
-* Language selection (English/French) through the property pane.
+* Language selection (English/French/Account) through the property pane.
+  - If Account option is selected, content will be displayed in either English or French depends on the language of the user profile.
 
 ## References
 - [Getting started with SharePoint Framework](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
