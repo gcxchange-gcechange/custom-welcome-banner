@@ -14,8 +14,6 @@ Custom welcome banner is a small web part developed using sharepoint react frame
 - [SharePoint Framework](https://aka.ms/spfx)
 - [Microsoft 365 tenant](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
 
-> Get your own free development tenant by subscribing to [Microsoft 365 developer program](http://aka.ms/o365devprogram)
-
 ## Prerequisites
 
 > Any special pre-requisites?
@@ -24,14 +22,13 @@ Custom welcome banner is a small web part developed using sharepoint react frame
 
 | Solution    | Author(s)                                               |
 | ----------- | ------------------------------------------------------- |
-| folder name | Author details (name, company, twitter alias with link) |
+| custom-welcome-banner | [gcxchange-gcechange](https://github.com/gcxchange-gcechange) |
 
 ## Version history
 
 | Version | Date             | Comments        |
 | ------- | ---------------- | --------------- |
-| 1.1     | March 10, 2021   | Update comment  |
-| 1.0     | January 29, 2021 | Initial release |
+| 1.0     | June, 2022 | Initial release |
 
 ## Disclaimer
 
@@ -40,28 +37,21 @@ Custom welcome banner is a small web part developed using sharepoint react frame
 ---
 
 ## Minimal Path to Awesome
-
 - Clone this repository
 - Ensure that you are at the solution folder
 - in the command-line run:
   - **npm install**
-  - **gulp serve**
-
-> Include any additional steps as needed.
+  - **gulp bundle --ship**
+  - **gulp package-solution --ship**
+-  After all the conmand run the package witl be available in the following path: \custom-welcome-banner\sharepoint\solution\custom-welcome-banner.sppkg
+- Add created package to your app catalog
+- add the app to a SharePoint site and then add the web part to the page
 
 ## Features
+This Web Part illustrates the following concepts on top of the SharePoint Framework:
+* Using the SPFx context to gather the current user's display name.
+* Language selection (English/French) through the property pane.
 
-Description of the extension that expands upon high-level summary above.
-
-This extension illustrates the following concepts:
-
-- topic 1
-- topic 2
-- topic 3
-
-> Notice that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions advance.
-
-> Share your web part with others through Microsoft 365 Patterns and Practices program to get visibility and exposure. More details on the community, open-source projects and other activities from http://aka.ms/m365pnp.
 
 ## References
 
