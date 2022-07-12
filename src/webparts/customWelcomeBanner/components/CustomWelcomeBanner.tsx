@@ -16,21 +16,15 @@ export default class CustomWelcomeBanner extends React.Component<ICustomWelcomeB
     };
   }
 
-
   public strings = SelectLanguage(this.props.prefLang);
   public render(): React.ReactElement<ICustomWelcomeBannerProps> {
     const {
       hasTeamsContext,
       userDisplayName,
-      prefLang
     } = this.props;
 
     return (
       <section className={`${styles.customWelcomeBanner} ${hasTeamsContext ? styles.teams : ''}`}>
-        <p>{
-          //testingAgain:{prefLang}
-        }
-        </p>
         <div className={styles.welcome}>
           <div className={styles.title}>{this.strings.WelcomeTitle}{escape(userDisplayName)}</div>
           <div className={styles.welcomeMessageContainer}>
