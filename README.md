@@ -14,10 +14,6 @@ Custom welcome banner is a small web part developed using sharepoint react frame
 - [SharePoint Framework](https://aka.ms/spfx)
 - [Microsoft 365 tenant](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
 
-## Prerequisites
-
-> Any special pre-requisites?
-
 ## Solution
 
 | Solution    | Author(s)                                               |
