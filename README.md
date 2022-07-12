@@ -43,7 +43,7 @@ Custom welcome banner is a small web part developed using sharepoint react frame
   - **npm install**
   - **gulp bundle --ship**
   - **gulp package-solution --ship**
--  After all the conmand run the package will be available in the following path: \custom-welcome-banner\sharepoint\solution\custom-welcome-banner.sppkg
+- The package will be available in the following path: \custom-welcome-banner\sharepoint\solution\custom-welcome-banner.sppkg
 - Add created package to your app catalog
 - Add the app to a SharePoint site and then add the web part to the page
 
@@ -52,9 +52,7 @@ This Web Part illustrates the following concepts on top of the SharePoint Framew
 * Using the SPFx context to gather the current user's display name.
 * Language selection (English/French) through the property pane.
 
-
 ## References
-
 - [Getting started with SharePoint Framework](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
 - [Building for Microsoft teams](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/build-for-teams-overview)
 - [Use Microsoft Graph in your solution](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/using-microsoft-graph-apis)
