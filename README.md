@@ -43,9 +43,9 @@ Custom welcome banner is a small web part developed using sharepoint react frame
   - **npm install**
   - **gulp bundle --ship**
   - **gulp package-solution --ship**
--  After all the conmand run the package witl be available in the following path: \custom-welcome-banner\sharepoint\solution\custom-welcome-banner.sppkg
+-  After all the conmand run the package will be available in the following path: \custom-welcome-banner\sharepoint\solution\custom-welcome-banner.sppkg
 - Add created package to your app catalog
-- add the app to a SharePoint site and then add the web part to the page
+- Add the app to a SharePoint site and then add the web part to the page
 
 ## Features
 This Web Part illustrates the following concepts on top of the SharePoint Framework:
