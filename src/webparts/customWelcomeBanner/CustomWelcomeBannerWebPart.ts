@@ -3,6 +3,7 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
+  PropertyPaneDropdown,
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
@@ -14,6 +15,7 @@ import { ICustomWelcomeBannerProps } from './components/ICustomWelcomeBannerProp
 
 export interface ICustomWelcomeBannerWebPartProps {
   description: string;
+  prefLang: string;
 }
 
 export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<ICustomWelcomeBannerWebPartProps> {
@@ -25,11 +27,10 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
     const element: React.ReactElement<ICustomWelcomeBannerProps> = React.createElement(
       CustomWelcomeBanner,
       {
-        description: this.properties.description,
-        isDarkTheme: this._isDarkTheme,
-        environmentMessage: this._environmentMessage,
+        
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
-        userDisplayName: this.context.pageContext.user.displayName
+        userDisplayName: this.context.pageContext.user.displayName,
+        prefLang: this.properties.prefLang,
       }
     );
 
@@ -80,16 +81,17 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
     return {
       pages: [
         {
-          header: {
-            description: strings.PropertyPaneDescription
-          },
+         
           groups: [
             {
-              groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
-                })
+                  PropertyPaneDropdown('prefLang', {
+                  label: 'Preferred Language',
+                  options: [
+                    { key: 'account', text: 'Account' },
+                    { key: 'en-us', text: 'English' },
+                    { key: 'fr-fr', text: 'Français' }
+                  ]}),
               ]
             }
           ]

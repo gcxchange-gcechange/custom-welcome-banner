@@ -1,7 +1,6 @@
 export interface ICustomWelcomeBannerProps {
-  description: string;
-  isDarkTheme: boolean;
-  environmentMessage: string;
+  
   hasTeamsContext: boolean;
   userDisplayName: string;
+  prefLang: string;
 }

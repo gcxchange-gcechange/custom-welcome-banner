@@ -6,6 +6,13 @@ declare interface ICustomWelcomeBannerWebPartStrings {
   AppLocalEnvironmentTeams: string;
   AppSharePointEnvironment: string;
   AppTeamsTabEnvironment: string;
+
+  UserLang:string;
+  
+  WelcomeTitle:PerformanceServerTiming;
+  WelcomeMessage:string;
+  AboutGcxchangeText:sting
+  AboutGcxchangeURL:string;    
 }
 
 declare module 'CustomWelcomeBannerWebPartStrings' {
