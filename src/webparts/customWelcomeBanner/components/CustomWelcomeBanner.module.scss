@@ -4,43 +4,46 @@
   overflow: hidden;
   color: "[theme:bodyText, default: #323130]";
   color: var(--bodyText);
-  
+
 
   &.teams {
     font-family: $ms-font-family-fallbacks;
   }
 
-  width: 100%;
   background-repeat: no-repeat;
   background-image:url(../assets/Homepage_header_1.jpg);
-  background-size: 100% 100%;
+  background-size: cover;
+  background-position: bottom right;
 }
 
 .welcome {
   text-align: left;
-  padding: 2rem;
+  padding: 70px 30px;
 }
 
 .welcome .title {
   color: rgb(16, 110, 190);
   font-size: 28px;
-  margin: 20px 0px;
+  margin: 10px 0px;
 }
-.welcomeMessageContainer{
+
+.welcomeMessageContainer {
   display: flex;
 
 }
-  .welcomeMessage {
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.4em;
-    color: #333;
-    margin: 10px 0px;
-    flex:2
-  }
-  .headerBackgroundImagePlaceHolder{
-    flex:1;
-  }
+
+.welcomeMessage {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 40px;
+  color: #333;
+  margin: 10px 0px;
+  flex: 2
+}
+
+.headerBackgroundImagePlaceHolder {
+  flex: 1;
+}
 
 .welcome .button {
   margin: 30px 0px;
@@ -48,7 +51,7 @@
 
 .welcome .button {
   a {
-    padding: 10px  15px;
+    padding: 10px 15px;
     background-color: rgb(0, 120, 212);
     text-decoration: none;
     color: rgb(255, 255, 255);
@@ -60,3 +63,42 @@
     }
   }
 }
+
+
+/* Extra large devices (large laptops and desktops, 1200px and less) */
+@media only screen and (max-width: 1200px) {
+
+  .welcome {
+    padding: 50px 30px;
+
+  }
+
+  .welcomeMessage {
+    line-height: 30px;
+    margin: 0px;
+  }
+  .welcomeMessage {
+    flex:3
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and less) */
+@media only screen and (max-width: 992px) {
+  .welcome .button {
+    margin: 20px 0px;
+  }
+
+  .welcome {
+    padding: 5px 30px;
+
+  }
+
+  .welcomeMessage {
+    line-height: 27px;
+  }
+
+}
+
+
+/* Medium devices (landscape tablets, 768px and less) */
+@media only screen and (max-width: 768px) {}
