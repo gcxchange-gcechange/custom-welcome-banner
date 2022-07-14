@@ -15,7 +15,10 @@ import { ICustomWelcomeBannerProps } from './components/ICustomWelcomeBannerProp
 
 export interface ICustomWelcomeBannerWebPartProps {
   description: string;
-  prefLang: string;
+  welcomeTitle: string;
+  welcomeMessage: string;
+  aboutGcxchangeButtonText: string;
+  aboutGcxchangeButtonURL: string;
 }
 
 export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<ICustomWelcomeBannerWebPartProps> {
@@ -27,10 +30,13 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
     const element: React.ReactElement<ICustomWelcomeBannerProps> = React.createElement(
       CustomWelcomeBanner,
       {
-        
+
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
         userDisplayName: this.context.pageContext.user.displayName,
-        prefLang: this.properties.prefLang,
+        welcomeTitle: this.properties.welcomeTitle,
+        welcomeMessage: this.properties.welcomeMessage,
+        aboutGcxchangeButtonText: this.properties.aboutGcxchangeButtonText,
+        aboutGcxchangeButtonURL: this.properties.aboutGcxchangeButtonURL,
       }
     );
 
@@ -81,17 +87,31 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
     return {
       pages: [
         {
-         
+
           groups: [
             {
               groupFields: [
-                  PropertyPaneDropdown('prefLang', {
-                  label: 'Preferred Language',
-                  options: [
-                    { key: 'account', text: 'Account' },
-                    { key: 'en-us', text: 'English' },
-                    { key: 'fr-fr', text: 'Français' }
-                  ]}),
+                // PropertyPaneDropdown('prefLang', {
+                //   label: 'Preferred Language',
+                //   options: [
+                //     { key: 'account', text: 'Account' },
+                //     { key: 'en-us', text: 'English' },
+                //     { key: 'fr-fr', text: 'Français' }
+                //   ]
+                // }),
+                PropertyPaneTextField('welcomeTitle', {
+                  label: 'Greeting'
+                }),
+                PropertyPaneTextField('welcomeMessage', {
+                  label: 'Welcome Message',
+                  multiline: true
+                }),
+                PropertyPaneTextField('aboutGcxchangeButtonText', {
+                  label: 'Text for Button',
+                }),
+                PropertyPaneTextField('aboutGcxchangeButtonURL', {
+                  label: 'URL for  Button',
+                }),
               ]
             }
           ]
