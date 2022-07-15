@@ -82,6 +82,15 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
   protected get dataVersion(): Version {
     return Version.parse('1.0');
   }
+  private validateEmptyField(value: string): string {
+    if (value === null ||
+      value.trim().length === 0) {
+      return 'This field cannot be empty';
+    }    
+    return '';
+  }
+
+
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
@@ -100,17 +109,21 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                 //   ]
                 // }),
                 PropertyPaneTextField('welcomeTitle', {
-                  label: 'Greeting'
+                  label: 'Greeting',
+                  onGetErrorMessage: this.validateEmptyField.bind(this),
                 }),
                 PropertyPaneTextField('welcomeMessage', {
                   label: 'Welcome Message',
+                  onGetErrorMessage: this.validateEmptyField.bind(this),
                   multiline: true
                 }),
                 PropertyPaneTextField('aboutGcxchangeButtonText', {
                   label: 'Text for Button',
+                  onGetErrorMessage: this.validateEmptyField.bind(this),
                 }),
                 PropertyPaneTextField('aboutGcxchangeButtonURL', {
                   label: 'URL for  Button',
+                  onGetErrorMessage: this.validateEmptyField.bind(this),
                 }),
               ]
             }
