@@ -95,7 +95,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
       
     if (value === null ||
       value.trim().length === 0) {
-      return 'This field cannot be empty test2';
+      return 'This field cannot be empty';
     }    
     else if(!urlregex.test(value))
     {
@@ -103,8 +103,6 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
     }
     return '';
 }
-
-
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
