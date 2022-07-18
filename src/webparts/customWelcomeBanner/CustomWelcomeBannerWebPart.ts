@@ -95,7 +95,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
       
     if (value === null ||
       value.trim().length === 0) {
-      return 'This field cannot be empty test';
+      return 'This field cannot be empty test2';
     }    
     else if(!urlregex.test(value))
     {
