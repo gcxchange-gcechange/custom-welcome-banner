@@ -108,18 +108,9 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
     return {
       pages: [
         {
-
           groups: [
             {
               groupFields: [
-                // PropertyPaneDropdown('prefLang', {
-                //   label: 'Preferred Language',
-                //   options: [
-                //     { key: 'account', text: 'Account' },
-                //     { key: 'en-us', text: 'English' },
-                //     { key: 'fr-fr', text: 'Français' }
-                //   ]
-                // }),
                 PropertyPaneTextField('welcomeTitle', {
                   label: 'Greeting',
                   onGetErrorMessage: this.validateEmptyField.bind(this),

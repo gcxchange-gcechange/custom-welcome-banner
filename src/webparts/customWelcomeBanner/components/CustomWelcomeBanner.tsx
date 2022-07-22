@@ -2,18 +2,12 @@ import * as React from 'react';
 import styles from './CustomWelcomeBanner.module.scss';
 import { ICustomWelcomeBannerProps } from './ICustomWelcomeBannerProps';
 import { escape } from '@microsoft/sp-lodash-subset';
-// import * as strings from 'CustomWelcomeBannerWebPartStrings';
 import { SelectLanguage } from './SelectLanguage';
 
 
 export default class CustomWelcomeBanner extends React.Component<ICustomWelcomeBannerProps, {}> {
   constructor(props: ICustomWelcomeBannerProps) {
     super(props);
-
-    // this.state = {
-    //   groups: [],
-
-    // };
   }
 
   public render(): React.ReactElement<ICustomWelcomeBannerProps> {
