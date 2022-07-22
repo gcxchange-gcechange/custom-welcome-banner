@@ -2,5 +2,8 @@ export interface ICustomWelcomeBannerProps {
   
   hasTeamsContext: boolean;
   userDisplayName: string;
-  prefLang: string;
+  welcomeTitle: string;
+  welcomeMessage: string;
+  aboutGcxchangeButtonText:string;
+  aboutGcxchangeButtonURL:string;
 }

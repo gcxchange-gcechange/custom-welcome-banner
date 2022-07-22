@@ -9,10 +9,10 @@ declare interface ICustomWelcomeBannerWebPartStrings {
 
   UserLang:string;
   
-  WelcomeTitle:PerformanceServerTiming;
-  WelcomeMessage:string;
-  AboutGcxchangeText:sting
-  AboutGcxchangeURL:string;    
+  welcomeTitle:string;
+  welcomeMessage:string;
+  aboutGcxchangeButtonText:sting
+  aboutGcxchangeButtonURL:string;    
 }
 
 declare module 'CustomWelcomeBannerWebPartStrings' {
