@@ -15,7 +15,10 @@ import { ICustomWelcomeBannerProps } from './components/ICustomWelcomeBannerProp
 
 export interface ICustomWelcomeBannerWebPartProps {
   description: string;
-  prefLang: string;
+  welcomeTitle: string;
+  welcomeMessage: string;
+  aboutGcxchangeButtonText: string;
+  aboutGcxchangeButtonURL: string;
 }
 
 export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<ICustomWelcomeBannerWebPartProps> {
@@ -27,10 +30,13 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
     const element: React.ReactElement<ICustomWelcomeBannerProps> = React.createElement(
       CustomWelcomeBanner,
       {
-        
+
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
         userDisplayName: this.context.pageContext.user.displayName,
-        prefLang: this.properties.prefLang,
+        welcomeTitle: this.properties.welcomeTitle,
+        welcomeMessage: this.properties.welcomeMessage,
+        aboutGcxchangeButtonText: this.properties.aboutGcxchangeButtonText,
+        aboutGcxchangeButtonURL: this.properties.aboutGcxchangeButtonURL,
       }
     );
 
@@ -76,22 +82,52 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
   protected get dataVersion(): Version {
     return Version.parse('1.0');
   }
+  private validateEmptyField(value: string): string {
+    if (value === null ||
+      value.trim().length === 0) {
+      return 'This field cannot be empty';
+    }    
+    return '';
+  }
+  private validateURL(value:string) {
+    var urlregex = new RegExp(
+      "^(http|https|ftp)\://([a-zA-Z0-9\.\-]+(\:[a-zA-Z0-9\.&amp;%\$\-]+)*@)*((25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|localhost|([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\?\'\\\+&amp;%\$#\=~_\-]+))*$");
+      
+    if (value === null ||
+      value.trim().length === 0) {
+      return 'This field cannot be empty';
+    }    
+    else if(!urlregex.test(value))
+    {
+      return 'Please type a valid URL';
+    }
+    return '';
+}
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
       pages: [
         {
-         
           groups: [
             {
               groupFields: [
-                  PropertyPaneDropdown('prefLang', {
-                  label: 'Preferred Language',
-                  options: [
-                    { key: 'account', text: 'Account' },
-                    { key: 'en-us', text: 'English' },
-                    { key: 'fr-fr', text: 'Français' }
-                  ]}),
+                PropertyPaneTextField('welcomeTitle', {
+                  label: 'Greeting',
+                  onGetErrorMessage: this.validateEmptyField.bind(this),
+                }),
+                PropertyPaneTextField('welcomeMessage', {
+                  label: 'Welcome Message',
+                  onGetErrorMessage: this.validateEmptyField.bind(this),
+                  multiline: true
+                }),
+                PropertyPaneTextField('aboutGcxchangeButtonText', {
+                  label: 'Text for Button',
+                  onGetErrorMessage: this.validateEmptyField.bind(this),
+                }),
+                PropertyPaneTextField('aboutGcxchangeButtonURL', {
+                  label: 'URL for  Button',
+                  onGetErrorMessage: this.validateURL.bind(this),
+                }),
               ]
             }
           ]
