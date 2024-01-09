@@ -44,7 +44,12 @@ None
   - **gulp bundle --ship**
   - **gulp package-solution --ship**
 - Add the webpart to your tenant app store
-- Approve the web API permissions
+- Add the Webpart to a page
+- Edit the webpart
+  - Enter the Greeting, Welcome Message and Text for Button in required language in the property pane (setting)
+  - Enter the URL for button in the property pane (setting)
+- Save and publish the page
+
 
 ## Disclaimer
 
