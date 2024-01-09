@@ -1,8 +1,8 @@
+/* eslint-disable react/self-closing-comp */
 import * as React from 'react';
 import styles from './CustomWelcomeBanner.module.scss';
 import { ICustomWelcomeBannerProps } from './ICustomWelcomeBannerProps';
 import { escape } from '@microsoft/sp-lodash-subset';
-import { SelectLanguage } from './SelectLanguage';
 
 
 export default class CustomWelcomeBanner extends React.Component<ICustomWelcomeBannerProps, {}> {
