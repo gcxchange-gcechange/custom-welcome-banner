@@ -7,15 +7,10 @@ Short description of what the webpart do. Give the basic information and feature
 _Adding a visualisation is possible. Need to keep in mind that it should only reflect what is provide in the short description. Plus, an short description of the image or animation need to be provide in the alt._
 
 ## Prerequisites
-
-This web part connects to [this function app](https://github.com/gcxchange-gcechange/appsvc-fnc-dev-userstats).
-
+None
 ## API permission
 None
 ## Version 
-
-Used SharePoint Framework Webpart or Sharepoint Framework Extension 
-
 ![SPFX](https://img.shields.io/badge/SPFX-1.17.4-green.svg)
 ![Node.js](https://img.shields.io/badge/Node.js-v16.13+-green.svg)
 
@@ -28,10 +23,11 @@ Used SharePoint Framework Webpart or Sharepoint Framework Extension
 
 ## Version history
 
-Version|Date|Comments
--------|----|--------
-1.0|Dec 9, 2021|Initial release
-1.1|March 25, 2022|Next release
+| Version | Date         | Comments                |
+| ------- | ------------ | ----------------------- |
+| 1.0     | Jul 29, 2022 | Initial release         |
+| 1.1     | Jan 20, 2024 | Upgraded to SPFX 1.17.4 |
+
 
 ## Minimal Path to Awesome
 
