@@ -1,38 +1,30 @@
-# spfx-react-directory
+# custom-welcome-banner
 
 ## Summary
+Custom welcome banner is a small web part developed using sharepoint react Framework. It can be used in any languages.
 
-Short summary on functionality and used technologies.
-
-[picture of the solution in action, if possible]
+![screenshot of the property pane](./src/webparts/customWelcomeBanner/assets/screenshot1.png)
 
 ## Used SharePoint Framework Version
 
-![version](https://img.shields.io/badge/version-1.16-green.svg)
+![version](https://img.shields.io/badge/version-1.13-green.svg)
 
 ## Applies to
 
 - [SharePoint Framework](https://aka.ms/spfx)
 - [Microsoft 365 tenant](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
 
-> Get your own free development tenant by subscribing to [Microsoft 365 developer program](http://aka.ms/o365devprogram)
-
-## Prerequisites
-
-> Any special pre-requisites?
-
 ## Solution
 
 | Solution    | Author(s)                                               |
 | ----------- | ------------------------------------------------------- |
-| folder name | Author details (name, company, twitter alias with link) |
+| custom-welcome-banner | [gcxchange-gcechange](https://github.com/gcxchange-gcechange) |
 
 ## Version history
 
 | Version | Date             | Comments        |
 | ------- | ---------------- | --------------- |
-| 1.1     | March 10, 2021   | Update comment  |
-| 1.0     | January 29, 2021 | Initial release |
+| 1.0     | July, 2022 | Initial release |
 
 ## Disclaimer
 
@@ -41,31 +33,22 @@ Short summary on functionality and used technologies.
 ---
 
 ## Minimal Path to Awesome
-
 - Clone this repository
 - Ensure that you are at the solution folder
 - in the command-line run:
   - **npm install**
-  - **gulp serve**
-
-> Include any additional steps as needed.
+  - **gulp bundle --ship**
+  - **gulp package-solution --ship**
+- The package will be available in the following path: \custom-welcome-banner\sharepoint\solution\custom-welcome-banner.sppkg
+- Add created package to your app catalog
+- Add the app to a SharePoint site and then add the web part to the page
 
 ## Features
-
-Description of the extension that expands upon high-level summary above.
-
-This extension illustrates the following concepts:
-
-- topic 1
-- topic 2
-- topic 3
-
-> Notice that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions advance.
-
-> Share your web part with others through Microsoft 365 Patterns and Practices program to get visibility and exposure. More details on the community, open-source projects and other activities from http://aka.ms/m365pnp.
+This Web Part illustrates the following concepts on top of the SharePoint Framework:
+* Using the SPFx context to gather the current user's display name.
+* Web part can be use to display content in any language.
 
 ## References
-
 - [Getting started with SharePoint Framework](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
 - [Building for Microsoft teams](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/build-for-teams-overview)
 - [Use Microsoft Graph in your solution](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/using-microsoft-graph-apis)
