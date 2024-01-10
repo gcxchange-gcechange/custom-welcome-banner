@@ -10,6 +10,15 @@
 - Since all the text in the webpart customizable through the property pane, it can be used in any language.
 - Webpart can be placed in full-width column layouts. 
 
+### Webpart:
+
+![Webpart](./src/webparts/customWelcomeBanner/assets/webpart.png)
+
+### Settings / Property Pane:
+
+![Property Pane](./src/webparts/customWelcomeBanner/assets/property_pane.png)
+
+
 ## Prerequisites
 None
 ## API permission
