@@ -2,12 +2,13 @@
 
 ## Summary
 
-- The web part pulls the current user's name and displays it after the greeting text.
+- The webpart pulls the current user's name and displays it after the greeting text.
 - It contains a clickable button that redirects to another page.
 - The link URL for the button can be entered in the property pane.
 - Welcome message displays in between greeting text and the button.
 - The greeting text, welcome message, and text on the button are customizable through the property pane. 
 - Since all the text in the webpart customizable through the property pane, it can be used in any language.
+- Webpart can be placed in full-width column layouts. 
 
 ## Prerequisites
 None
@@ -52,7 +53,6 @@ None
   - Enter the Greeting, Welcome Message and Text for Button in required language in the property pane (setting)
   - Enter the URL for button in the property pane (setting)
 - Save and publish the page
-
 
 ## Disclaimer
 
