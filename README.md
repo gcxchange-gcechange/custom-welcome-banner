@@ -38,7 +38,7 @@ None
 | Version | Date         | Comments                |
 | ------- | ------------ | ----------------------- |
 | 1.0     | Jul 29, 2022 | Initial release         |
-| 1.1     | Jan 20, 2024 | Upgraded to SPFX 1.17.4 |
+| 1.1     | Jan 10, 2024 | Upgraded to SPFX 1.17.4 |
 
 
 ## Minimal Path to Awesome
