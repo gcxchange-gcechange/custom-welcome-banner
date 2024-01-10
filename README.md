@@ -18,7 +18,6 @@
 
 ![Property Pane](./src/webparts/customWelcomeBanner/assets/property_pane.png)
 
-
 ## Prerequisites
 None
 ## API permission
