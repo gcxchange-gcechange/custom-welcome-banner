@@ -1,10 +1,13 @@
-# Name of the application
+# Welcome Banner
 
 ## Summary
 
-Short description of what the webpart do. Give the basic information and feature of the app. 
-
-_Adding a visualisation is possible. Need to keep in mind that it should only reflect what is provide in the short description. Plus, an short description of the image or animation need to be provide in the alt._
+- The web part pulls the current user's name and displays it after the greeting text.
+- It contains a clickable button that redirects to another page.
+- The link URL for the button can be entered in the property pane.
+- Welcome message displays in between greeting text and the button.
+- The greeting text, welcome message, and text on the button are customizable through the property pane. 
+- Since all the text in the webpart customizable through the property pane, it can be used in any language.
 
 ## Prerequisites
 None
