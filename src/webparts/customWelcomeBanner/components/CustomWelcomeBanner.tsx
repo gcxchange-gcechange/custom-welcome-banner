@@ -26,7 +26,7 @@ export default class CustomWelcomeBanner extends React.Component<ICustomWelcomeB
           <h2 className={styles.title}>{welcomeTitle}{escape(userDisplayName)}</h2>
           <div className={styles.welcomeMessageContainer}>
             <div className={styles.welcomeMessage}>{welcomeMessage} </div>
-            <div className={styles.headerBackgroundImagePlaceHolder}></div>
+            <div className={styles.headerBackgroundImagePlaceHolder} />
           </div>
           <div className={styles.button}>
             <a href={aboutGcxchangeButtonURL} target="_blank" rel="noreferrer">{aboutGcxchangeButtonText}</a>
