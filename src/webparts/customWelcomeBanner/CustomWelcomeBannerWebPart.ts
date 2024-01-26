@@ -130,8 +130,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                   label: 'URL for  Button',
                   onGetErrorMessage: this.validateURL.bind(this),
                 }),PropertyPaneTextField('mailtoButtonText', {
-                  label: 'Test for mailto  Button',
-                  onGetErrorMessage: this.validateURL.bind(this),
+                  label: 'Text for mailto  Button',
                 }),
               ]
             }
