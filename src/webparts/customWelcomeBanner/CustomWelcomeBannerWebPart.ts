@@ -18,6 +18,7 @@ export interface ICustomWelcomeBannerWebPartProps {
   welcomeMessage: string;
   aboutGcxchangeButtonText: string;
   aboutGcxchangeButtonURL: string;
+  mailtoButtonText: string
 }
 
 export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<ICustomWelcomeBannerWebPartProps> {
@@ -36,6 +37,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         welcomeMessage: this.properties.welcomeMessage,
         aboutGcxchangeButtonText: this.properties.aboutGcxchangeButtonText,
         aboutGcxchangeButtonURL: this.properties.aboutGcxchangeButtonURL,
+        mailtoButtonText: this.properties.mailtoButtonText
       }
     );
 
@@ -126,6 +128,9 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                 }),
                 PropertyPaneTextField('aboutGcxchangeButtonURL', {
                   label: 'URL for  Button',
+                  onGetErrorMessage: this.validateURL.bind(this),
+                }),PropertyPaneTextField('mailtoButtonText', {
+                  label: 'Test for mailto  Button',
                   onGetErrorMessage: this.validateURL.bind(this),
                 }),
               ]

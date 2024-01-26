@@ -6,4 +6,5 @@ export interface ICustomWelcomeBannerProps {
   welcomeMessage: string;
   aboutGcxchangeButtonText:string;
   aboutGcxchangeButtonURL:string;
+  mailtoButtonText:string
 }
