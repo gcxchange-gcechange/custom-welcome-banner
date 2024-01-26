@@ -46,7 +46,7 @@ export default class CustomWelcomeBanner extends React.Component<
           {mailtoButtonText &&
             <div className={styles.button}>
               <a
-                href={mailtoButtonText}
+                href={`mailto: ${mailtoButtonText}`}
                 target="_blank"
                 rel="noreferrer"
               >
