@@ -38,7 +38,8 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         welcomeMessage: this.properties.welcomeMessage,
         aboutGcxchangeButtonText: this.properties.aboutGcxchangeButtonText,
         aboutGcxchangeButtonURL: this.properties.aboutGcxchangeButtonURL,
-        mailtoButtonText: this.properties.mailtoButtonText
+        mailtoButtonText: this.properties.mailtoButtonText,
+        mailtoButtonLink: this.properties.mailtoButtonLink
       }
     );
 
