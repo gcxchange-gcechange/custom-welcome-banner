@@ -43,7 +43,7 @@ export default class CustomWelcomeBanner extends React.Component<
             <a href={aboutGcxchangeButtonURL} target="_blank" rel="noreferrer">
               {aboutGcxchangeButtonText}
             </a>
-            {mailtoButtonText && (
+            {mailtoButtonText && mailtoButtonLink && (
               <a href={`${mailtoButtonLink}`} target="_blank" rel="noreferrer" style={{marginLeft:50}}>
                 {mailtoButtonText}
               </a>
