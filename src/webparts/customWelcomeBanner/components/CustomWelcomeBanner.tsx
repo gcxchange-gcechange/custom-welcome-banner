@@ -21,7 +21,7 @@ export default class CustomWelcomeBanner extends React.Component<
       aboutGcxchangeButtonText,
       aboutGcxchangeButtonURL,
       mailtoButtonText,
-      mailtoButtonLink
+      mailtoButtonLink,
     } = this.props;
 
     return (
@@ -43,18 +43,12 @@ export default class CustomWelcomeBanner extends React.Component<
             <a href={aboutGcxchangeButtonURL} target="_blank" rel="noreferrer">
               {aboutGcxchangeButtonText}
             </a>
-          </div>
-          {mailtoButtonText &&
-            <div className={styles.button}>
-              <a
-                href={`${mailtoButtonLink}`}
-                target="_blank"
-                rel="noreferrer"
-              >
+            {mailtoButtonText && (
+              <a href={`${mailtoButtonLink}`} target="_blank" rel="noreferrer" style={{marginLeft:50}}>
                 {mailtoButtonText}
               </a>
-            </div>
-  }
+            )}
+          </div>
         </div>
       </section>
     );
