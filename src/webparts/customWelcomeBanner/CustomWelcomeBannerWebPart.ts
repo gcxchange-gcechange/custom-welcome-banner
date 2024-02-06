@@ -18,6 +18,8 @@ export interface ICustomWelcomeBannerWebPartProps {
   welcomeMessage: string;
   aboutGcxchangeButtonText: string;
   aboutGcxchangeButtonURL: string;
+  button2Text: string;
+  button2Link: string;
 }
 
 export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<ICustomWelcomeBannerWebPartProps> {
@@ -36,6 +38,8 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         welcomeMessage: this.properties.welcomeMessage,
         aboutGcxchangeButtonText: this.properties.aboutGcxchangeButtonText,
         aboutGcxchangeButtonURL: this.properties.aboutGcxchangeButtonURL,
+        button2Text: this.properties.button2Text,
+        button2Link: this.properties.button2Link
       }
     );
 
@@ -127,6 +131,11 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                 PropertyPaneTextField('aboutGcxchangeButtonURL', {
                   label: 'URL for  Button',
                   onGetErrorMessage: this.validateURL.bind(this),
+                }),PropertyPaneTextField('button2Text', {
+                  label: 'Text for Button2',
+                }),
+                PropertyPaneTextField('button2Link', {
+                  label: 'URL for Button2',
                 }),
               ]
             }
