@@ -15,7 +15,12 @@
   background-size: cover;
   background-position: bottom right;
 }
+.welcomeWrapper{
+  display: flex;
+  margin: auto;
+  max-width: 1236px;
 
+}
 .welcome {
   text-align: left;
   padding: 70px 30px;
