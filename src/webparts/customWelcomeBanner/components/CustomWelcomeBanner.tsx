@@ -30,10 +30,10 @@ export default class CustomWelcomeBanner extends React.Component<
           hasTeamsContext ? styles.teams : ""
         }`}
       >
-        <div className={styles.welcomeWrapper}>
+      
           <div className={styles.welcome}>
             <h2 className={styles.title}>
-              {welcomeTitle}
+              {welcomeTitle}&nbsp;
               {escape(userDisplayName)}
             </h2>
             <div className={styles.welcomeMessageContainer}>
@@ -60,7 +60,7 @@ export default class CustomWelcomeBanner extends React.Component<
               )}
             </div>
           </div>
-        </div>
+        
       </section>
     );
   }
