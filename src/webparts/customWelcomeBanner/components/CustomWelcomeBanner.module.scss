@@ -10,15 +10,19 @@
     font-family: $ms-font-family-fallbacks;
   }
 
-  background-repeat: no-repeat;
-  background-image:url(../assets/Homepage_header_1.jpg);
-  background-size: cover;
-  background-position: bottom right;
+  // background-repeat: no-repeat;
+  // //background-image:url(../assets/Homepage_header-2characters.jpg);
+  // background-size: cover;
+  // background-position: bottom right;
 }
-
+.welcomeWrapper{
+  display: flex;
+  margin: auto;
+  max-width: 1236px;
+}
 .welcome {
   text-align: left;
-  padding: 70px 30px;
+  padding: 70px 0px;
 }
 
 .welcome .title {
@@ -29,7 +33,6 @@
 
 .welcomeMessageContainer {
   display: flex;
-
 }
 
 .welcomeMessage {
