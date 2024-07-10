@@ -30,26 +30,37 @@ export default class CustomWelcomeBanner extends React.Component<
           hasTeamsContext ? styles.teams : ""
         }`}
       >
-        <div className={styles.welcome}>
-          <h1 className={styles.title}>
-            {welcomeTitle}
-            {escape(userDisplayName)}
-          </h1>
-          <div className={styles.welcomeMessageContainer}>
-            <div className={styles.welcomeMessage}>{welcomeMessage} </div>
-            <div className={styles.headerBackgroundImagePlaceHolder} />
-          </div>
-          <div className={styles.button}>
-            <a href={aboutGcxchangeButtonURL} target="_blank" rel="noreferrer">
-              {aboutGcxchangeButtonText}
-            </a>
-            {button2Text && button2Link && (
-              <a href={`${button2Link}`} target="_blank" rel="noreferrer" style={{marginLeft:50}}>
-                {button2Text}
+      
+          <div className={styles.welcome}>
+            <h1 className={styles.title}>
+              {welcomeTitle}&nbsp;
+              {escape(userDisplayName)}
+            </h1>
+            <div className={styles.welcomeMessageContainer}>
+              <div className={styles.welcomeMessage}>{welcomeMessage} </div>
+              <div className={styles.headerBackgroundImagePlaceHolder} />
+            </div>
+            <div className={styles.button}>
+              <a
+                href={aboutGcxchangeButtonURL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {aboutGcxchangeButtonText}
               </a>
-            )}
+              {button2Text && button2Link && (
+                <a
+                  href={`${button2Link}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ marginLeft: 50 }}
+                >
+                  {button2Text}
+                </a>
+              )}
+            </div>
           </div>
-        </div>
+        
       </section>
     );
   }
