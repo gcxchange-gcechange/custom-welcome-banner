@@ -32,10 +32,10 @@ export default class CustomWelcomeBanner extends React.Component<
       >
       
           <div className={styles.welcome}>
-            <h2 className={styles.title}>
+            <h1 className={styles.title}>
               {welcomeTitle}&nbsp;
               {escape(userDisplayName)}
-            </h2>
+            </h1>
             <div className={styles.welcomeMessageContainer}>
               <div className={styles.welcomeMessage}>{welcomeMessage} </div>
               <div className={styles.headerBackgroundImagePlaceHolder} />
