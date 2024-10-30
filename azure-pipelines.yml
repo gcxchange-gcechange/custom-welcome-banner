@@ -16,11 +16,16 @@ stages:
   jobs:
 
 ############################################################
-## installs: npm dependencies 
+## installs: depreceiating node version and installing npm dependencies 
 ############################################################
     - job: build_package 
       displayName: SPFx build and packaging
       steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '16.13.0' 
+          displayName: 'Install Node.js'
+
         - script: npm install
           displayName: Install npm dependencies 
         
