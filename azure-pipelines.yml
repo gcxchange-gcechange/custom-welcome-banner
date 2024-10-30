@@ -191,7 +191,7 @@ stages:
 ############################################################
 ## deploys: the *.sppkg package to the app-catalog
 ############################################################
-              - script:  m365 spo app deploy --debug --verbose --name $(SpPkgFilename) -u https://devgcx.sharepoint.com/sites/appcatalog --appCatalogScope tenant --skipFeatureDeployment --siteUrl https://devgcx.sharepoint.com/
+              - script:  m365 spo app deploy --debug --verbose --name $(SpPkgFilename) -u https://devgcx.sharepoint.com/ --appCatalogScope sitecollection --siteUrl https://devgcx.sharepoint.com/
                 displayName: Deploy to SharePoint package to the App Catalog
 
 - stage: E2E_test
