@@ -128,5 +128,5 @@ stages:
 ############################################################
 ## installs/enables: the *.sppkg package to the site in particular 
 ############################################################
-              - script:  m365 spo app install --id 0EA66617-4448-4585-A3A9-0542DD83747C --siteUrl https://devgcx.sharepoint.com/
+              - script:  m365 spo app install --id 0EA66617-4448-4585-A3A9-0542DD83747C --siteUrl https://devgcx.sharepoint.com/ --overwrite
                 displayName: Installs/Enables to a particular SharePoint site within App Catalog
