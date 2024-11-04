@@ -130,3 +130,9 @@ stages:
 ############################################################
               - script:  m365 spo app install --id 0EA66617-4448-4585-A3A9-0542DD83747C --siteUrl https://devgcx.sharepoint.com/ --overwrite
                 displayName: Installs/Enables to a particular SharePoint site within App Catalog
+
+############################################################
+## deploys: the *.sppkg package to the app-catalog
+############################################################
+              - script:  m365 spo app deploy --debug --verbose --name $(SpPkgFilename) -u https://devgcx.sharepoint.com/sites/appcatalog 
+                displayName: Deploy to SharePoint package to the App Catalog
