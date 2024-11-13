@@ -126,8 +126,13 @@ stages:
                 displayName: Upload to SharePoint package to the App Catalog
 
 ############################################################
-## removes and reinstalls/reenables: the *.sppkg package to the site in particular 
+## gets: the *.sppkg package to the site in particular 
 ############################################################
-## m365 spo app uninstall --id 0EA66617-4448-4585-A3A9-0542DD83747C --siteUrl https://devgcx.sharepoint.com/  --force to be added when need to reupdate
+              - script: m365 spo app get --id 0EA66617-4448-4585-A3A9-0542DD83747C --appCatalogScope tenant
+                displayName: Gets the SharePoint app to the App Catalog
+
+############################################################
+## enables: the *.sppkg package to the site in particular 
+############################################################
               - script: m365 spo app install --id 0EA66617-4448-4585-A3A9-0542DD83747C --siteUrl https://devgcx.sharepoint.com/
-                displayName: Removes and reinstalls/reenables the SharePoint app to a specific site
+                displayName: Installs and Enables the app to a specific site
