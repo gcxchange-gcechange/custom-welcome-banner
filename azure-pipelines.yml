@@ -129,4 +129,4 @@ stages:
 ## upgrades: the *.sppkg package to the site in particular 
 ############################################################
               - script: m365 spo app upgrade --id 0EA66617-4448-4585-A3A9-0542DD83747C --siteUrl https://devgcx.sharepoint.com/
-                displayName: Installs and Enables the app to a specific site
+                displayName: Upgrades the app to a specific site
