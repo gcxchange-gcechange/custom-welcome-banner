@@ -24,7 +24,7 @@ stages:
         - task: NodeTool@0
           inputs:
             versionSpec: '16.13.0' # Specify the Node.js version to use
-        - script: npm install
+        - script: npm ci
           displayName: Install npm dependencies 
         
 ############################################################
