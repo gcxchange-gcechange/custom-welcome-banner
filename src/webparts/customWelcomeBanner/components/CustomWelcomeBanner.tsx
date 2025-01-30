@@ -1,67 +1,60 @@
-/* eslint-disable react/self-closing-comp */
 import * as React from "react";
 import styles from "./CustomWelcomeBanner.module.scss";
 import { ICustomWelcomeBannerProps } from "./ICustomWelcomeBannerProps";
 import { escape } from "@microsoft/sp-lodash-subset";
 
-export default class CustomWelcomeBanner extends React.Component<
-  ICustomWelcomeBannerProps,
-  {}
-> {
-  constructor(props: ICustomWelcomeBannerProps) {
-    super(props);
-  }
+const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
-  public render(): React.ReactElement<ICustomWelcomeBannerProps> {
-    const {
-      hasTeamsContext,
-      userDisplayName,
-      welcomeMessage,
-      welcomeTitle,
-      aboutGcxchangeButtonText,
-      aboutGcxchangeButtonURL,
-      button2Text,
-      button2Link,
-    } = this.props;
+  const transformText = (text: string): string => {
+    return text ? text.replace("{userName}", escape(props.userDisplayName)) : text;
+  };
 
-    return (
-      <section
-        className={`${styles.customWelcomeBanner} ${
-          hasTeamsContext ? styles.teams : ""
-        }`}
+  return (
+    <section
+      className={`${styles.customWelcomeBanner} ${props.hasTeamsContext ? styles.teams : ""}`}
+      style={{
+        backgroundColor: props.backgroundColor, 
+        backgroundSize: props.imageSize, 
+        backgroundImage: props.imagePosition && props.imagePosition.toLocaleLowerCase() === 'background' ? `url(${props.imageUrl})`: '' 
+      }}
+    >
+      <div style={{
+        display: 'flex', 
+        flexDirection: props.imagePosition && props.imagePosition.toLocaleLowerCase() === 'background' ? 'column' : 'row'
+        }}
       >
-      
-          <div className={styles.welcome}>
-            <h1 className={styles.title}>
-              {welcomeTitle}&nbsp;
-              {escape(userDisplayName)}
-            </h1>
-            <div className={styles.welcomeMessageContainer}>
-              <div className={styles.welcomeMessage}>{welcomeMessage} </div>
-              <div className={styles.headerBackgroundImagePlaceHolder} />
+        <div className={styles.welcome}>
+          <h1 className={styles.title} style={{ color: props.titleColor }}>
+            {transformText(props.title)}
+          </h1>
+          <div className={styles.welcomeMessageContainer}>
+            <div className={styles.welcomeMessage} style={{ color: props.subTextColor }}>
+              {props.subText}
             </div>
-            <div className={styles.button}>
-              <a
-                href={aboutGcxchangeButtonURL}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {aboutGcxchangeButtonText}
-              </a>
-              {button2Text && button2Link && (
-                <a
-                  href={`${button2Link}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ marginLeft: 50 }}
-                >
-                  {button2Text}
-                </a>
-              )}
-            </div>
+            <div className={styles.headerBackgroundImagePlaceHolder} />
           </div>
-        
-      </section>
-    );
-  }
-}
+          <div className={styles.button}>
+            <a href={props.btnPrimaryUrl} target="_blank" rel="noreferrer">
+              {props.btnPrimaryText}
+            </a>
+            {props.btnSecondaryText && props.btnSecondaryUrl && (
+              <a href={`${props.btnSecondaryUrl}`} target="_blank" rel="noreferrer" style={{ marginLeft: 50 }}>
+                {props.btnSecondaryText}
+              </a>
+            )}
+          </div>
+        </div>
+
+        {props.imagePosition && props.imagePosition.toLocaleLowerCase() === 'aside' && (
+          <div className={`${styles.asideImg}`}
+          style={{flex: '1', backgroundImage: `url(${props.imageUrl})`, backgroundSize: props.imageSize}}>
+            &nbsp;
+          </div>
+        )}
+
+      </div>
+    </section>
+  );
+};
+
+export default CustomWelcomeBanner;

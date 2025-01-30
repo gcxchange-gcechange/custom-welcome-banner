@@ -13,13 +13,20 @@ import CustomWelcomeBanner from './components/CustomWelcomeBanner';
 import { ICustomWelcomeBannerProps } from './components/ICustomWelcomeBannerProps';
 
 export interface ICustomWelcomeBannerWebPartProps {
-  description: string;
-  welcomeTitle: string;
-  welcomeMessage: string;
-  aboutGcxchangeButtonText: string;
-  aboutGcxchangeButtonURL: string;
-  button2Text: string;
-  button2Link: string;
+  title: string;
+  titleColor: string;
+  titleAlign: string;
+  subText: string;
+  subTextColor: string;
+  subTextAlign: string;
+  btnPrimaryText: string;
+  btnPrimaryUrl: string;
+  btnSecondaryText: string;
+  btnSecondaryUrl: string;
+  imageUrl: string;
+  imagePosition: string;
+  imageSize: string;
+  backgroundColor: string;
 }
 
 export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<ICustomWelcomeBannerWebPartProps> {
@@ -34,12 +41,18 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
 
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
         userDisplayName: this.context.pageContext.user.displayName,
-        welcomeTitle: this.properties.welcomeTitle,
-        welcomeMessage: this.properties.welcomeMessage,
-        aboutGcxchangeButtonText: this.properties.aboutGcxchangeButtonText,
-        aboutGcxchangeButtonURL: this.properties.aboutGcxchangeButtonURL,
-        button2Text: this.properties.button2Text,
-        button2Link: this.properties.button2Link
+        title: this.properties.title,
+        titleColor: this.properties.titleColor,
+        subText: this.properties.subText,
+        subTextColor: this.properties.subTextColor,
+        btnPrimaryText: this.properties.btnPrimaryText,
+        btnPrimaryUrl: this.properties.btnPrimaryUrl,
+        btnSecondaryText: this.properties.btnSecondaryText,
+        btnSecondaryUrl: this.properties.btnSecondaryUrl,
+        imageUrl: this.properties.imageUrl,
+        imagePosition: this.properties.imagePosition,
+        imageSize: this.properties.imageSize,
+        backgroundColor: this.properties.backgroundColor
       }
     );
 
@@ -115,28 +128,59 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
           groups: [
             {
               groupFields: [
-                PropertyPaneTextField('welcomeTitle', {
-                  label: 'Greeting',
+                PropertyPaneTextField('title', {
+                  label: 'Title',
+                  description: 'The heading text of the banner.',
                   onGetErrorMessage: this.validateEmptyField.bind(this),
                 }),
-                PropertyPaneTextField('welcomeMessage', {
-                  label: 'Welcome Message',
-                  onGetErrorMessage: this.validateEmptyField.bind(this),
+                PropertyPaneTextField('titleColor', {
+                  label: 'Title Color',
+                  description: 'Color of the heading text',
+                }),
+                PropertyPaneTextField('subText', {
+                  label: 'Sub Text',
+                  description: 'The text below the heading.',
                   multiline: true
                 }),
-                PropertyPaneTextField('aboutGcxchangeButtonText', {
-                  label: 'Text for Button',
-                  onGetErrorMessage: this.validateEmptyField.bind(this),
+                PropertyPaneTextField('subTextColor', {
+                  label: 'Sub Text Color',
+                  description: 'Color of the text below the heading.',
                 }),
-                PropertyPaneTextField('aboutGcxchangeButtonURL', {
-                  label: 'URL for  Button',
-                  onGetErrorMessage: this.validateURL.bind(this),
-                }),PropertyPaneTextField('button2Text', {
-                  label: 'Text for Button2',
+                PropertyPaneTextField('btnPrimaryText', {
+                  label: 'Primary Button Text',
+                  description: 'The text for the primary button.',
                 }),
-                PropertyPaneTextField('button2Link', {
-                  label: 'URL for Button2',
+                PropertyPaneTextField('btnPrimaryUrl', {
+                  label: 'Primary Button URL',
+                  description: 'The URL for the primary button.',
                 }),
+                PropertyPaneTextField('btnSecondaryText', {
+                  label: 'Secondary Button Text',
+                  description: 'The text for the secondary button.',
+                }),
+                PropertyPaneTextField('btnSecondaryUrl', {
+                  label: 'Secondary Button URL',
+                  description: 'The URL for the secondary button.',
+                }),
+                PropertyPaneTextField('imageUrl', {
+                  label: 'Image URL',
+                  description: 'The URL for the image.',
+                }),
+                PropertyPaneTextField('imagePosition', {
+                  label: 'Image Position',
+                  description: 'The position of the image.',
+                  placeholder: 'background or aside'
+                }),
+                PropertyPaneTextField('imageSize', {
+                  label: 'Image Size',
+                  description: 'The size of the image in CSS',
+                  placeholder: 'auto cover, contain, etc.'
+                }),
+                PropertyPaneTextField('backgroundColor', {
+                  label: 'Background Color',
+                  description: 'The color of the background.',
+                  placeholder: 'color, hex, or rgb'
+                })
               ]
             }
           ]
