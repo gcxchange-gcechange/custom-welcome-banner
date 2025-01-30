@@ -2,6 +2,7 @@ import * as React from "react";
 import styles from "./CustomWelcomeBanner.module.scss";
 import { ICustomWelcomeBannerProps } from "./ICustomWelcomeBannerProps";
 import { escape } from "@microsoft/sp-lodash-subset";
+import { PrimaryButton, DefaultButton  } from "@fluentui/react";
 
 const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
@@ -34,13 +35,24 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
             <div className={styles.headerBackgroundImagePlaceHolder} />
           </div>
           <div className={styles.button}>
-            <a href={props.btnPrimaryUrl} target="_blank" rel="noreferrer">
-              {props.btnPrimaryText}
-            </a>
+            {props.btnPrimaryText && props.btnPrimaryUrl && (
+              <PrimaryButton 
+                href={props.btnPrimaryUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {props.btnPrimaryText}
+              </PrimaryButton>
+            )}
             {props.btnSecondaryText && props.btnSecondaryUrl && (
-              <a href={`${props.btnSecondaryUrl}`} target="_blank" rel="noreferrer" style={{ marginLeft: 50 }}>
+              <DefaultButton 
+                href={props.btnSecondaryUrl}
+                target="_blank"
+                rel="noreferrer"
+                style={{marginLeft: '30px'}}
+              >
                 {props.btnSecondaryText}
-              </a>
+              </DefaultButton>
             )}
           </div>
         </div>
