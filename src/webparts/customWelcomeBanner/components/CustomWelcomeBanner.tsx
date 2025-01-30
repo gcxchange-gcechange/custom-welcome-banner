@@ -2,9 +2,11 @@ import * as React from "react";
 import styles from "./CustomWelcomeBanner.module.scss";
 import { ICustomWelcomeBannerProps } from "./ICustomWelcomeBannerProps";
 import { escape } from "@microsoft/sp-lodash-subset";
-import { PrimaryButton, DefaultButton  } from "@fluentui/react";
+import { PrimaryButton, DefaultButton, useTheme  } from "@fluentui/react";
 
 const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
+
+  const theme = useTheme();
 
   const transformText = (text: string): string => {
     return text ? text.replace("{userName}", escape(props.userDisplayName)) : text;
@@ -25,7 +27,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
         }}
       >
         <div className={styles.welcome}>
-          <h1 className={styles.title} style={{ color: props.titleColor }}>
+          <h1 className={styles.title} style={{ color: props.titleColor !== '' ? props.titleColor: theme.palette.themePrimary }}>
             {transformText(props.title)}
           </h1>
           <div className={styles.welcomeMessageContainer}>
