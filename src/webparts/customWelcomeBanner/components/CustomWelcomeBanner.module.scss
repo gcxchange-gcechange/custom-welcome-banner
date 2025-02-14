@@ -4,16 +4,14 @@
   overflow: hidden;
   color: "[theme:bodyText, default: #323130]";
   color: var(--bodyText);
-
-
+  
   &.teams {
     font-family: $ms-font-family-fallbacks;
   }
 
-  // background-repeat: no-repeat;
-  // //background-image:url(../assets/Homepage_header-2characters.jpg);
-  // background-size: cover;
-  // background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom right;
 }
 .welcomeWrapper{
   display: flex;
@@ -26,9 +24,15 @@
 }
 
 .welcome .title {
-  color: rgb(16, 110, 190);
   font-size: 28px;
   margin: 10px 0px;
+}
+
+.asideImg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-width: 30%;
 }
 
 .welcomeMessageContainer {
@@ -41,7 +45,7 @@
   line-height: 40px;
   color: #222;
   margin: 10px 0px;
-  flex: 2
+  flex: 3
 }
 
 .headerBackgroundImagePlaceHolder {
@@ -55,15 +59,9 @@
 .welcome .button {
   a {
     padding: 10px 15px;
-    background-color: rgb(0, 120, 212);
     text-decoration: none;
-    color: rgb(255, 255, 255);
     font-size: 16px;
     font-weight: 600;
-
-    &:hover {
-      background-color: rgb(16, 110, 190);
-    }
   }
 }
 

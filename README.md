@@ -2,12 +2,17 @@
 
 ## Summary
 
-- The webpart pulls the current user's name and displays it after the greeting text.
-- It contains a clickable button that redirects to another page.
-- The link URL for the button can be entered in the property pane.
+- The webpart pulls the current user's name and can displays it in the title with `{userName}`.
+- It contains a clickable primary button that redirects to another page.
+- It contains a secondary secondary button that redirects to another page.
+- The link URL for the buttons can be entered in the property pane.
 - Welcome message displays in between greeting text and the button.
-- The greeting text, welcome message, and text on the button are customizable through the property pane. 
-- Since all the text in the webpart customizable through the property pane, it can be used in any language.
+- The greeting text, welcome message, and text on the button are customizable through the property pane.
+- The image for the banner can be configured in the property pane. It expects a url.
+- The image position can be configured in the property pane.
+- The background color of the banner can also be configured in the property pane.
+- The layout of the banner can he either `aside` or `background`. 
+- Since everything is customizable through the property pane, it can be used in any language and doesn't require being rebuild and uploaded to the app catalogue.
 - Webpart can be placed in full-width column layouts. 
 
 ### Webpart:
