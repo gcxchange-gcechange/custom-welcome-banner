@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./CustomWelcomeBanner.module.scss";
 import { ICustomWelcomeBannerProps } from "./ICustomWelcomeBannerProps";
 import { escape } from "@microsoft/sp-lodash-subset";
-import { PrimaryButton, DefaultButton, useTheme  } from "@fluentui/react";
+import { PrimaryButton, DefaultButton, useTheme } from "@fluentui/react";
 
 const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
@@ -27,11 +27,21 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
         }}
       >
         <div className={styles.welcome}>
-          <h1 className={styles.title} style={{ color: props.titleColor !== '' ? props.titleColor: theme.palette.themePrimary }}>
+          <h1 className={styles.title} style={{ 
+            color: props.titleColor !== '' ? props.titleColor: theme.palette.themePrimary, 
+            fontSize: props.titleSize, 
+            fontWeight: props.titleWeight 
+            }}
+          >
             {transformText(props.title)}
           </h1>
           <div className={styles.welcomeMessageContainer}>
-            <div className={styles.welcomeMessage} style={{ color: props.subTextColor }}>
+            <div className={styles.welcomeMessage} style={{ 
+              color: props.subTextColor, 
+              fontSize: props.subTextSize, 
+              fontWeight: props.subTextWeight 
+              }}
+            >
               {props.subText}
             </div>
             <div className={styles.headerBackgroundImagePlaceHolder} />
@@ -42,6 +52,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
                 href={props.btnPrimaryUrl}
                 target="_blank"
                 rel="noreferrer"
+                style={{padding: props.btnPadding}}
               >
                 {props.btnPrimaryText}
               </PrimaryButton>
@@ -51,7 +62,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
                 href={props.btnSecondaryUrl}
                 target="_blank"
                 rel="noreferrer"
-                style={{marginLeft: '30px'}}
+                style={{marginLeft: '30px', padding: props.btnPadding}}
               >
                 {props.btnSecondaryText}
               </DefaultButton>

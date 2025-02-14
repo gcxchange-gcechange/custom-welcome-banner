@@ -15,14 +15,18 @@ import { ICustomWelcomeBannerProps } from './components/ICustomWelcomeBannerProp
 export interface ICustomWelcomeBannerWebPartProps {
   title: string;
   titleColor: string;
-  titleAlign: string;
+  titleSize: string;
+  titleWeight: string;
   subText: string;
   subTextColor: string;
   subTextAlign: string;
+  subTextSize: string;
+  subTextWeight: string;
   btnPrimaryText: string;
   btnPrimaryUrl: string;
   btnSecondaryText: string;
   btnSecondaryUrl: string;
+  btnPadding: string;
   imageUrl: string;
   imagePosition: string;
   imageSize: string;
@@ -43,12 +47,17 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         userDisplayName: this.context.pageContext.user.displayName,
         title: this.properties.title,
         titleColor: this.properties.titleColor,
+        titleSize: this.properties.titleSize,
+        titleWeight: this.properties.titleWeight,
         subText: this.properties.subText,
         subTextColor: this.properties.subTextColor,
+        subTextSize: this.properties.subTextSize,
+        subTextWeight: this.properties.subTextWeight,
         btnPrimaryText: this.properties.btnPrimaryText,
         btnPrimaryUrl: this.properties.btnPrimaryUrl,
         btnSecondaryText: this.properties.btnSecondaryText,
         btnSecondaryUrl: this.properties.btnSecondaryUrl,
+        btnPadding: this.properties.btnPadding,
         imageUrl: this.properties.imageUrl,
         imagePosition: this.properties.imagePosition,
         imageSize: this.properties.imageSize,
@@ -137,6 +146,14 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                   label: 'Title Color',
                   description: 'Color of the heading text',
                 }),
+                PropertyPaneTextField('titleSize', {
+                  label: 'Title Size',
+                  description: 'The size of the heading text.',
+                }),
+                PropertyPaneTextField('titleWeight', {
+                  label: 'Title Weight',
+                  description: 'The weight of the heading text.',
+                }),
                 PropertyPaneTextField('subText', {
                   label: 'Sub Text',
                   description: 'The text below the heading.',
@@ -145,6 +162,14 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                 PropertyPaneTextField('subTextColor', {
                   label: 'Sub Text Color',
                   description: 'Color of the text below the heading.',
+                }),
+                PropertyPaneTextField('subTextSize', {
+                  label: 'Sub Text Size',
+                  description: 'The size of the text below the heading.',
+                }),
+                PropertyPaneTextField('subTextWeight', {
+                  label: 'Sub Text Weight',
+                  description: 'The weight of the text below the heading.',
                 }),
                 PropertyPaneTextField('btnPrimaryText', {
                   label: 'Primary Button Text',
@@ -161,6 +186,12 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                 PropertyPaneTextField('btnSecondaryUrl', {
                   label: 'Secondary Button URL',
                   description: 'The URL for the secondary button.',
+                }),
+                PropertyPaneTextField('btnPadding', {
+                  label: 'Button Padding',
+                  description: 'Padding given to the buttons.',
+                  placeholder: '16px 40px',
+                  value: this.properties.btnPadding ?? '10px 15px'
                 }),
                 PropertyPaneTextField('imageUrl', {
                   label: 'Image URL',
