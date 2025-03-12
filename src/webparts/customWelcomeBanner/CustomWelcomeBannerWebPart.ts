@@ -3,6 +3,7 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
+  PropertyPaneButton,
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
@@ -31,12 +32,14 @@ export interface ICustomWelcomeBannerWebPartProps {
   imagePosition: string;
   imageSize: string;
   backgroundColor: string;
+  uploadImage: string;
 }
 
 export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<ICustomWelcomeBannerWebPartProps> {
 
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
+  private _fileInput: HTMLInputElement;
 
   public render(): void {
     const element: React.ReactElement<ICustomWelcomeBannerProps> = React.createElement(
@@ -61,7 +64,8 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         imageUrl: this.properties.imageUrl,
         imagePosition: this.properties.imagePosition,
         imageSize: this.properties.imageSize,
-        backgroundColor: this.properties.backgroundColor
+        backgroundColor: this.properties.backgroundColor,
+        uploadImage: this.properties.uploadImage
       }
     );
 
@@ -107,6 +111,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
   protected get dataVersion(): Version {
     return Version.parse('1.0');
   }
+
   private validateEmptyField(value: string): string {
     if (value === null ||
       value.trim().length === 0) {
@@ -114,21 +119,42 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
     }    
     return '';
   }
-  private validateURL(value:string):string {
-    const urlregex = new RegExp(
-      // eslint-disable-next-line no-useless-escape
-      "^(http|https|ftp)\://([a-zA-Z0-9\.\-]+(\:[a-zA-Z0-9\.&amp;%\$\-]+)*@)*((25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|localhost|([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\?\'\\\+&amp;%\$#\=~_\-]+))*$");
-      
-    if (value === null ||
-      value.trim().length === 0) {
-      return 'This field cannot be empty';
-    }    
-    else if(!urlregex.test(value))
-    {
-      return 'Please type a valid URL';
+
+  private handleFileUpload = (): void => {
+    if (!this._fileInput) {
+      this._fileInput = document.createElement('input');
+      this._fileInput.type = 'file';
+      this._fileInput.accept = 'image/*';
+      this._fileInput.style.display = 'none';
+  
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      const self = this;
+  
+      this._fileInput.addEventListener('change', async function (event: Event) {
+        const target = event.target as HTMLInputElement;
+        if (target.files && target.files.length > 0) {
+          const file = target.files[0];
+  
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const base64 = e.target?.result as string;
+  
+            if (self.properties) {
+              self.properties.uploadImage = base64;
+              self.context.propertyPane.refresh();
+              self.render();
+            } else {
+              console.error("self.properties is undefined");
+            }
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+  
+      document.body.appendChild(this._fileInput);
     }
-    return '';
-}
+    this._fileInput.click();
+  };
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
@@ -211,6 +237,10 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                   label: 'Background Color',
                   description: 'The color of the background.',
                   placeholder: 'color, hex, or rgb'
+                }),
+                PropertyPaneButton('uploadButton', {
+                  text: "Upload Image",
+                  onClick: this.handleFileUpload
                 })
               ]
             }
