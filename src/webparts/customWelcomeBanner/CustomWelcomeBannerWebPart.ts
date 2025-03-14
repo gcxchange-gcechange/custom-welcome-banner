@@ -139,13 +139,10 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
           reader.onload = function (e) {
             const base64 = e.target?.result as string;
   
-            if (self.properties) {
-              self.properties.uploadImage = base64;
-              self.context.propertyPane.refresh();
-              self.render();
-            } else {
-              console.error("self.properties is undefined");
-            }
+            self.properties.uploadImage = base64;
+            self.properties.imageUrl = '';
+            self.context.propertyPane.refresh();
+            self.render();
           };
           reader.readAsDataURL(file);
         }
@@ -157,6 +154,14 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
   };
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+
+    if (!this.properties.btnPadding) 
+      this.properties.btnPadding = '10px 15px';
+    if (!this.properties.imagePosition) 
+      this.properties.imagePosition = 'aside';
+    if (!this.properties.backgroundColor) 
+      this.properties.backgroundColor = 'transparent';
+
     return {
       pages: [
         {
@@ -216,12 +221,17 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                 PropertyPaneTextField('btnPadding', {
                   label: 'Button Padding',
                   description: 'Padding given to the buttons.',
-                  placeholder: '16px 40px',
-                  value: this.properties.btnPadding ?? '10px 15px'
+                  placeholder: '16px 40px'
                 }),
                 PropertyPaneTextField('imageUrl', {
                   label: 'Image URL',
                   description: 'The URL for the image.',
+                }),
+                PropertyPaneButton('uploadButton', {
+                  text: 'Upload Image',
+                  description: 'Upload an image from your computer. This will automatically clear the \"Image URL\" field.',
+                  buttonType: 3,
+                  onClick: this.handleFileUpload
                 }),
                 PropertyPaneTextField('imagePosition', {
                   label: 'Image Position',
@@ -237,10 +247,6 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                   label: 'Background Color',
                   description: 'The color of the background.',
                   placeholder: 'color, hex, or rgb'
-                }),
-                PropertyPaneButton('uploadButton', {
-                  text: "Upload Image",
-                  onClick: this.handleFileUpload
                 })
               ]
             }
