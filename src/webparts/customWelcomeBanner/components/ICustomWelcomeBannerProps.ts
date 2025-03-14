@@ -19,4 +19,5 @@ export interface ICustomWelcomeBannerProps {
   imagePosition: string;
   imageSize: string;
   backgroundColor: string;
+  uploadImage: string
 }

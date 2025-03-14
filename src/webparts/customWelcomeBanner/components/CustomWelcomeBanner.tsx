@@ -15,10 +15,11 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
   return (
     <section
       className={`${styles.customWelcomeBanner} ${props.hasTeamsContext ? styles.teams : ""}`}
+      aria-label=""
       style={{
         backgroundColor: props.backgroundColor, 
         backgroundSize: props.imageSize, 
-        backgroundImage: props.imagePosition && props.imagePosition.toLocaleLowerCase() === 'background' ? `url(${props.imageUrl})`: '' 
+        backgroundImage: props.imagePosition && props.imagePosition.toLocaleLowerCase() === 'background' ? `url(${props.imageUrl ? props.imageUrl : props.uploadImage})`: '' 
       }}
     >
       <div style={{
@@ -72,7 +73,8 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
         {props.imagePosition && props.imagePosition.toLocaleLowerCase() === 'aside' && (
           <div className={`${styles.asideImg}`}
-          style={{flex: '1', backgroundImage: `url(${props.imageUrl})`, backgroundSize: props.imageSize}}>
+          aria-hidden="true"
+          style={{flex: '1', backgroundImage: `url(${props.imageUrl ? props.imageUrl : props.uploadImage})`, backgroundSize: props.imageSize}}>
             &nbsp;
           </div>
         )}
