@@ -15,7 +15,6 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
   return (
     <section
       className={`${styles.customWelcomeBanner} ${props.hasTeamsContext ? styles.teams : ""}`}
-      aria-label=""
       style={{
         backgroundColor: props.backgroundColor, 
         backgroundSize: props.imageSize, 
