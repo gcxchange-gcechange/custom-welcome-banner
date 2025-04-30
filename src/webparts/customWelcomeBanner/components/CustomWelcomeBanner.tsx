@@ -12,9 +12,12 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
     return text ? text.replace("{userName}", escape(props.userDisplayName)) : text;
   };
 
+  const bannerId = 'gcx-banner-' + new Date().getTime();
+
   return (
     <section
       className={`${styles.customWelcomeBanner} ${props.hasTeamsContext ? styles.teams : ""}`}
+      aria-labelledby={bannerId}
       style={{
         backgroundColor: props.backgroundColor, 
         backgroundSize: props.imageSize, 
@@ -27,7 +30,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
         }}
       >
         <div className={styles.welcome}>
-          <h1 className={styles.title} style={{ 
+          <h1 id={bannerId} className={styles.title} style={{ 
             color: props.titleColor !== '' ? props.titleColor: theme.palette.themePrimary, 
             fontSize: props.titleSize, 
             fontWeight: props.titleWeight 
