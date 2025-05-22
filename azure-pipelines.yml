@@ -114,13 +114,15 @@ stages:
                   azureSubscription: sharepoint_integration 
                   scriptLocation: 'inlineScript'
                   scriptType: bash
-                  inlineScript: m365 login --authType certificate --certificateBase64Encoded "$CertificateID" --appId "$App" --tenant "$Tenant" --password "$PasswordID"
+                  inlineScript: m365 login --authType password --userName "$ServiceAccountEmail" --password "$ServiceAccountPassword"
                 displayName: Login to OfficeM365
                 env:
-                  App: $(AppsID)
-                  Tenant: $(TenantsID)
-                  CertificateID: $(Credential)
-                  PasswordID: $(Password)
+                  #App: $(AppsID)
+                  #Tenant: $(TenantsID)
+                  #CertificateID: $(Credential)
+                  #PasswordID: $(Password)
+                  ServiceAccountEmail: $(SERVICE_ACCOUNT_EMAIL)
+                  ServiceAccountPassword: $(SERVICE_ACCOUNT_PASSWORD)
 
 ############################################################
 ## uploads: the *.sppkg package to the app-catalog
