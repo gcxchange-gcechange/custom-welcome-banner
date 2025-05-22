@@ -114,11 +114,11 @@ stages:
                   azureSubscription: sharepoint_integration 
                   scriptLocation: 'inlineScript'
                   scriptType: bash
-                  inlineScript: m365 login --authType password --userName "$ServiceAccountEmail" --password "$ServiceAccountPassword" --appId "$App"
+                  inlineScript: m365 login --authType password --userName "$ServiceAccountEmail" --password "$ServiceAccountPassword" --appId "$App" --tenant "$Tenant"
                 displayName: Login to OfficeM365
                 env:
                   App: $(AppsID)
-                  #Tenant: $(TenantsID)
+                  Tenant: $(TenantsID)
                   #CertificateID: $(Credential)
                   #PasswordID: $(Password)
                   ServiceAccountEmail: $(SERVICE_ACCOUNT_EMAIL)
