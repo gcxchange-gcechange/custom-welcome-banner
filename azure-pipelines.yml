@@ -109,20 +109,37 @@ stages:
 ############################################################
 ## logs in: Office M365 CLI
 ############################################################
+              #- task: AzureCLI@2
+                #inputs: 
+                  #azureSubscription: sharepoint_integration 
+                  #scriptLocation: 'inlineScript'
+                  #scriptType: bash
+                  #inlineScript: m365 login --authType password --userName "$ServiceAccountEmail" --password "$ServiceAccountPassword" --appId "$App" --tenant "$Tenant"
+                #displayName: Login to OfficeM365
+                #env:
+                  #App: $(AppsID)
+                  #Tenant: $(TenantsID)
+                  #CertificateID: $(Credential)
+                  #PasswordID: $(Password)
+                  #ServiceAccountEmail: $(SERVICE_ACCOUNT_EMAIL)
+                  #ServiceAccountPassword: $(SERVICE_ACCOUNT_PASSWORD)
+
+############################################################
+## logs in: Office M365 CLI
+############################################################
               - task: AzureCLI@2
                 inputs: 
                   azureSubscription: sharepoint_integration 
                   scriptLocation: 'inlineScript'
                   scriptType: bash
-                  inlineScript: m365 login --authType password --userName "$ServiceAccountEmail" --password "$ServiceAccountPassword" --appId "$App" --tenant "$Tenant"
+                  inlineScript: m365 login --authType certificate --certificateBase64Encoded "$CertificateID" --appId "$App" --tenant "$Tenant" --password "$PasswordID"
                 displayName: Login to OfficeM365
                 env:
                   App: $(AppsID)
                   Tenant: $(TenantsID)
-                  #CertificateID: $(Credential)
-                  #PasswordID: $(Password)
-                  ServiceAccountEmail: $(SERVICE_ACCOUNT_EMAIL)
-                  ServiceAccountPassword: $(SERVICE_ACCOUNT_PASSWORD)
+                  CertificateID: $(Credential)
+                  PasswordID: $(Password)
+
 
 ############################################################
 ## uploads: the *.sppkg package to the app-catalog
