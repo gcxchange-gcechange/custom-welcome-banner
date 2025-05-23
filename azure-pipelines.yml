@@ -109,6 +109,24 @@ stages:
 ############################################################
 ## logs in: Office M365 CLI
 ############################################################
+              #- task: AzureCLI@2
+                #inputs: 
+                  #azureSubscription: sharepoint_integration 
+                  #scriptLocation: 'inlineScript'
+                  #scriptType: bash
+                  #inlineScript: m365 login --authType password --userName "$ServiceAccountEmail" --password "$ServiceAccountPassword" --appId "$App" --tenant "$Tenant"
+                #displayName: Login to OfficeM365
+                #env:
+                  #App: $(AppsID)
+                  #Tenant: $(TenantsID)
+                  #CertificateID: $(Credential)
+                  #PasswordID: $(Password)
+                  #ServiceAccountEmail: $(SERVICE_ACCOUNT_EMAIL)
+                  #ServiceAccountPassword: $(SERVICE_ACCOUNT_PASSWORD)
+
+############################################################
+## logs in: Office M365 CLI
+############################################################
               - task: AzureCLI@2
                 inputs: 
                   azureSubscription: sharepoint_integration 
@@ -122,6 +140,7 @@ stages:
                   CertificateID: $(Credential)
                   PasswordID: $(Password)
 
+
 ############################################################
 ## uploads: the *.sppkg package to the app-catalog
 ############################################################
@@ -130,7 +149,7 @@ stages:
                 displayName: Upload to SharePoint package to the App Catalog
 
 ############################################################
-## upgrades: the *.sppkg package to the site in particular 
+## deploys: the *.sppkg package to the app-catalog
 ############################################################
-              - script: m365 spo app upgrade --id 0EA66617-4448-4585-A3A9-0542DD83747C --siteUrl https://devgcx.sharepoint.com/
-                displayName: Upgrades the app to a specific site
+              - script:  m365 spo app deploy --debug --verbose --name $(SpPkgFilename) -u https://devgcx.sharepoint.com/sites/appcatalog --appCatalogScope tenant --skipFeatureDeployment
+                displayName: Deploy to SharePoint package to the App Catalog

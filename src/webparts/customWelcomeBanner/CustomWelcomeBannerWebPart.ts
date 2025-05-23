@@ -229,7 +229,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                 }),
                 PropertyPaneButton('uploadButton', {
                   text: 'Upload Image',
-                  description: 'Upload an image from your computer. This will automatically clear the \"Image URL\" field.',
+                  description: 'Upload an image from your computer. This will automatically clear the "Image URL" field.',
                   buttonType: 3,
                   onClick: this.handleFileUpload
                 }),
