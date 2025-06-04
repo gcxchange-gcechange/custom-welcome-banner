@@ -3,14 +3,19 @@ import styles from "./CustomWelcomeBanner.module.scss";
 import { ICustomWelcomeBannerProps } from "./ICustomWelcomeBannerProps";
 import { escape } from "@microsoft/sp-lodash-subset";
 import { PrimaryButton, DefaultButton, useTheme } from "@fluentui/react";
+import * as DOMPurify from 'dompurify';
 
 const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
   const theme = useTheme();
 
-  const transformText = (text: string): string => {
+  const insertUserName = (text: string): string => {
     return text ? text.replace("{userName}", escape(props.userDisplayName)) : text;
   };
+
+  const safeHtmlString = (text: string): string => {
+    return text ? DOMPurify.sanitize(text) : text;
+  }
 
   const bannerId = 'gcx-banner-' + new Date().getTime();
 
@@ -35,18 +40,16 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
             fontSize: props.titleSize, 
             fontWeight: props.titleWeight 
             }}
-          >
-            {transformText(props.title)}
-          </h1>
+            dangerouslySetInnerHTML={{ __html: safeHtmlString(insertUserName(props.title))}}
+          />
           <div className={styles.welcomeMessageContainer}>
             <div className={styles.welcomeMessage} style={{ 
               color: props.subTextColor, 
               fontSize: props.subTextSize, 
               fontWeight: props.subTextWeight 
               }}
-            >
-              {props.subText}
-            </div>
+              dangerouslySetInnerHTML={{ __html: safeHtmlString(props.subText)}}
+            />
             <div className={styles.headerBackgroundImagePlaceHolder} />
           </div>
           <div className={styles.button}>
