@@ -40,7 +40,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
             fontSize: props.titleSize, 
             fontWeight: props.titleWeight 
             }}
-            dangerouslySetInnerHTML={{ __html: safeHtmlString(insertUserName(props.title))}}
+            dangerouslySetInnerHTML={{ __html: safeHtmlString(insertUserName(props.title)) ?? ''}}
           />
           <div className={styles.welcomeMessageContainer}>
             <div className={styles.welcomeMessage} style={{ 
@@ -48,7 +48,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
               fontSize: props.subTextSize, 
               fontWeight: props.subTextWeight 
               }}
-              dangerouslySetInnerHTML={{ __html: safeHtmlString(props.subText)}}
+              dangerouslySetInnerHTML={{ __html: safeHtmlString(props.subText) ?? ''}}
             />
             <div className={styles.headerBackgroundImagePlaceHolder} />
           </div>
