@@ -12,8 +12,10 @@ export interface ICustomWelcomeBannerProps {
   subTextWeight: string;
   btnPrimaryText: string;
   btnPrimaryUrl: string;
+  btnPrimaryTarget: string;
   btnSecondaryText: string;
   btnSecondaryUrl: string;
+  btnSecondaryTarget: string;
   btnPadding: string;
   imageUrl: string;
   imagePosition: string;

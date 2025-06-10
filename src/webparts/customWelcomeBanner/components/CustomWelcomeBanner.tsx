@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./CustomWelcomeBanner.module.scss";
 import { ICustomWelcomeBannerProps } from "./ICustomWelcomeBannerProps";
 import { escape } from "@microsoft/sp-lodash-subset";
-import { PrimaryButton, DefaultButton, useTheme } from "@fluentui/react";
+import { PrimaryButton, DefaultButton, useTheme, Link } from "@fluentui/react";
 import * as DOMPurify from 'dompurify';
 
 const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
@@ -54,24 +54,30 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
           </div>
           <div className={styles.button}>
             {props.btnPrimaryText && props.btnPrimaryUrl && (
-              <PrimaryButton 
+              <Link
                 href={props.btnPrimaryUrl}
-                target="_blank"
+                target={props.btnPrimaryTarget}
                 rel="noreferrer"
-                style={{padding: props.btnPadding}}
               >
-                {props.btnPrimaryText}
-              </PrimaryButton>
+                <PrimaryButton 
+                  style={{padding: props.btnPadding}}
+                >
+                  {props.btnPrimaryText}
+                </PrimaryButton>
+              </Link>
             )}
             {props.btnSecondaryText && props.btnSecondaryUrl && (
-              <DefaultButton 
+              <Link
                 href={props.btnSecondaryUrl}
-                target="_blank"
+                target={props.btnSecondaryTarget}
                 rel="noreferrer"
-                style={{marginLeft: '30px', padding: props.btnPadding}}
               >
-                {props.btnSecondaryText}
-              </DefaultButton>
+                <DefaultButton 
+                  style={{marginLeft: '30px', padding: props.btnPadding}}
+                >
+                  {props.btnSecondaryText}
+                </DefaultButton>
+              </Link>
             )}
           </div>
         </div>

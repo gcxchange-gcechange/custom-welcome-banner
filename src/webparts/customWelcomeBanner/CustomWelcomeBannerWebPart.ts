@@ -25,8 +25,10 @@ export interface ICustomWelcomeBannerWebPartProps {
   subTextWeight: string;
   btnPrimaryText: string;
   btnPrimaryUrl: string;
+  btnPrimaryTarget: string;
   btnSecondaryText: string;
   btnSecondaryUrl: string;
+  btnSecondaryTarget: string;
   btnPadding: string;
   imageUrl: string;
   imagePosition: string;
@@ -45,7 +47,6 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
     const element: React.ReactElement<ICustomWelcomeBannerProps> = React.createElement(
       CustomWelcomeBanner,
       {
-
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
         userDisplayName: this.context.pageContext.user.displayName,
         title: this.properties.title,
@@ -58,8 +59,10 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         subTextWeight: this.properties.subTextWeight,
         btnPrimaryText: this.properties.btnPrimaryText,
         btnPrimaryUrl: this.properties.btnPrimaryUrl,
+        btnPrimaryTarget: this.properties.btnPrimaryTarget,
         btnSecondaryText: this.properties.btnSecondaryText,
         btnSecondaryUrl: this.properties.btnSecondaryUrl,
+        btnSecondaryTarget: this.properties.btnSecondaryTarget,
         btnPadding: this.properties.btnPadding,
         imageUrl: this.properties.imageUrl,
         imagePosition: this.properties.imagePosition,
@@ -210,6 +213,9 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                   label: 'Primary Button URL',
                   description: 'The URL for the primary button.',
                 }),
+                PropertyPaneTextField('btnPrimaryTarget', {
+                  label: 'Primary Button Target'
+                }),
                 PropertyPaneTextField('btnSecondaryText', {
                   label: 'Secondary Button Text',
                   description: 'The text for the secondary button.',
@@ -217,6 +223,9 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                 PropertyPaneTextField('btnSecondaryUrl', {
                   label: 'Secondary Button URL',
                   description: 'The URL for the secondary button.',
+                }),
+                PropertyPaneTextField('btnSecondaryTarget', {
+                  label: 'Secondary Button Target'
                 }),
                 PropertyPaneTextField('btnPadding', {
                   label: 'Button Padding',
