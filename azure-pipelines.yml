@@ -28,6 +28,19 @@ stages:
           displayName: Install npm dependencies 
         
 ############################################################
+## udpates the required libraryId for .yo-rc.json using cipher.json
+############################################################
+        - script: |
+            sudo apt-get update && sudo apt-get install -y jq
+          displayName: Install jq
+
+        - script: |
+            echo "Injecting libraryId from cipher.json into .yo-rc.json"
+            LIBRARY_ID=$(jq -r '.libraryId' config/environment/cipher.json)
+            jq --arg libId "$LIBRARY_ID" '.["@microsoft/generator-sharepoint"].libraryId = $libId' .yo-rc.json > temp.json && mv temp.json .yo-rc.json
+          displayName: Inject environment-specific libraryId
+
+############################################################
 ## executes: gulp build and cleans
 ############################################################
         - task: gulp@0
