@@ -3,18 +3,20 @@ import styles from "./CustomWelcomeBanner.module.scss";
 import { ICustomWelcomeBannerProps } from "./ICustomWelcomeBannerProps";
 import { escape } from "@microsoft/sp-lodash-subset";
 import { PrimaryButton, DefaultButton, useTheme, Link } from "@fluentui/react";
-import * as DOMPurify from 'dompurify';
+
 
 const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
   const theme = useTheme();
+  const sanitizeHtml = require('sanitize-html');
+ 
 
   const insertUserName = (text: string): string => {
     return text ? text.replace("{userName}", escape(props.userDisplayName)) : text;
   };
 
   const safeHtmlString = (text: string): string => {
-    return text ? DOMPurify.sanitize(text) : text;
+    return text ?  sanitizeHtml(text) : text;
   }
 
   const bannerId = 'gcx-banner-' + new Date().getTime();
@@ -60,7 +62,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
                 rel="noreferrer"
               >
                 <PrimaryButton 
-                  style={{padding: props.btnPadding}}
+                  styles={{ root: { padding: props.btnPadding } }}
                 >
                   {props.btnPrimaryText}
                 </PrimaryButton>
@@ -73,7 +75,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
                 rel="noreferrer"
               >
                 <DefaultButton 
-                  style={{marginLeft: '30px', padding: props.btnPadding}}
+                  styles={{ root: {marginLeft: '30px', padding: props.btnPadding} }}
                 >
                   {props.btnSecondaryText}
                 </DefaultButton>

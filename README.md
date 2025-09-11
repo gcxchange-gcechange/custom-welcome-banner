@@ -28,8 +28,8 @@ None
 ## API permission
 None
 ## Version 
-![SPFX](https://img.shields.io/badge/SPFX-1.17.4-green.svg)
-![Node.js](https://img.shields.io/badge/Node.js-v16.13+-green.svg)
+![SPFX](https://img.shields.io/badge/SPFX-1.21.1-green.svg)
+![Node.js](https://img.shields.io/badge/Node.js-v22+-green.svg)
 
 ## Applies to
 
@@ -44,6 +44,7 @@ None
 | ------- | ------------ | ----------------------- |
 | 1.0     | Jul 29, 2022 | Initial release         |
 | 1.1     | Jan 10, 2024 | Upgraded to SPFX 1.17.4 |
+| 2.0     | Sep 11, 2025 | Upgraded to SPFX 1.21.1 |
 
 
 ## Minimal Path to Awesome
