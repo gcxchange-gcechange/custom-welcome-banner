@@ -35,7 +35,7 @@ export interface ICustomWelcomeBannerWebPartProps {
   imageSize: string;
   backgroundColor: string;
   uploadImage: string;
-  imageMinWidth: string;
+  minImgWidth: string;
   bannerPadding: string;
 }
 
@@ -71,7 +71,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         imageSize: this.properties.imageSize,
         backgroundColor: this.properties.backgroundColor,
         uploadImage: this.properties.uploadImage,
-        minImgWidth: this.properties.imageMinWidth,
+        minImgWidth: this.properties.minImgWidth,
         bannerPadding: this.properties.bannerPadding
       }
     );
@@ -168,8 +168,8 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
       this.properties.imagePosition = 'aside';
     if (!this.properties.backgroundColor) 
       this.properties.backgroundColor = 'transparent';
-    if (!this.properties.imageMinWidth)
-      this.properties.imageMinWidth = 'revert-layer';
+    if (!this.properties.minImgWidth)
+      this.properties.minImgWidth = 'revert-layer';
     if (!this.properties.bannerPadding)
       this.properties.bannerPadding = 'revert-layer';
 
