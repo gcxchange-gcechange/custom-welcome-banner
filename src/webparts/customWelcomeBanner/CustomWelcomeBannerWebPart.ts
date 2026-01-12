@@ -35,6 +35,8 @@ export interface ICustomWelcomeBannerWebPartProps {
   imageSize: string;
   backgroundColor: string;
   uploadImage: string;
+  imageMinWidth: string;
+  bannerPadding: string;
 }
 
 export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<ICustomWelcomeBannerWebPartProps> {
@@ -68,7 +70,9 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         imagePosition: this.properties.imagePosition,
         imageSize: this.properties.imageSize,
         backgroundColor: this.properties.backgroundColor,
-        uploadImage: this.properties.uploadImage
+        uploadImage: this.properties.uploadImage,
+        minImgWidth: this.properties.imageMinWidth,
+        bannerPadding: this.properties.bannerPadding
       }
     );
 
@@ -164,6 +168,10 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
       this.properties.imagePosition = 'aside';
     if (!this.properties.backgroundColor) 
       this.properties.backgroundColor = 'transparent';
+    if (!this.properties.imageMinWidth)
+      this.properties.imageMinWidth = 'revert-layer';
+    if (!this.properties.bannerPadding)
+      this.properties.bannerPadding = 'revert-layer';
 
     return {
       pages: [
@@ -251,12 +259,22 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                   label: 'Image Size',
                   description: 'The size of the image in CSS',
                   placeholder: 'auto cover, contain, etc.'
+                }), 
+                PropertyPaneTextField('minImgWidth', {
+                  label: 'Image Min Width',
+                  description: 'The minimum width of the image',
+                  placeholder: '30%'
                 }),
                 PropertyPaneTextField('backgroundColor', {
                   label: 'Background Color',
                   description: 'The color of the background.',
                   placeholder: 'color, hex, or rgb'
-                })
+                }),
+                PropertyPaneTextField('bannerPadding', {
+                  label: 'Banner Padding',
+                  description: 'Padding for the banner (CSS)',
+                  placeholder: '20px 20px'
+                }),
               ]
             }
           ]
