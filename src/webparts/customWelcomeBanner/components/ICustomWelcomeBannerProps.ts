@@ -20,6 +20,8 @@ export interface ICustomWelcomeBannerProps {
   imageUrl: string;
   imagePosition: string;
   imageSize: string;
+  minImgWidth: string;
   backgroundColor: string;
   uploadImage: string
+  bannerPadding: string;
 }

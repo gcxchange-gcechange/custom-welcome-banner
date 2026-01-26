@@ -28,7 +28,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
       style={{
         backgroundColor: props.backgroundColor, 
         backgroundSize: props.imageSize, 
-        backgroundImage: props.imagePosition && props.imagePosition.toLocaleLowerCase() === 'background' ? `url(${props.imageUrl ? props.imageUrl : props.uploadImage})`: '' 
+        backgroundImage: props.imagePosition && props.imagePosition.toLocaleLowerCase() === 'background' ? `url(${props.imageUrl ? props.imageUrl : props.uploadImage})`: ''
       }}
     >
       <div style={{
@@ -36,11 +36,11 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
         flexDirection: props.imagePosition && props.imagePosition.toLocaleLowerCase() === 'background' ? 'column' : 'row'
         }}
       >
-        <div className={styles.welcome}>
+        <div className={styles.welcome} style={{padding: props.bannerPadding}}>
           <h1 id={bannerId} className={styles.title} style={{ 
             color: props.titleColor !== '' ? props.titleColor: theme.palette.themePrimary, 
             fontSize: props.titleSize, 
-            fontWeight: props.titleWeight 
+            fontWeight: props.titleWeight
             }}
             dangerouslySetInnerHTML={{ __html: safeHtmlString(insertUserName(props.title)) ?? ''}}
           />
@@ -87,7 +87,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
         {props.imagePosition && props.imagePosition.toLocaleLowerCase() === 'aside' && (
           <div className={`${styles.asideImg}`}
           aria-hidden="true"
-          style={{flex: '1', backgroundImage: `url(${props.imageUrl ? props.imageUrl : props.uploadImage})`, backgroundSize: props.imageSize}}>
+          style={{flex: '1', backgroundImage: `url(${props.imageUrl ? props.imageUrl : props.uploadImage})`, backgroundSize: props.imageSize, minWidth: props.minImgWidth}}>
             &nbsp;
           </div>
         )}
