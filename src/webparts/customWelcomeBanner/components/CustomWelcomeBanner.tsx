@@ -8,6 +8,7 @@ import { PrimaryButton, DefaultButton, useTheme, Link } from "@fluentui/react";
 const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
   const theme = useTheme();
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const sanitizeHtml = require('sanitize-html');
  
 
@@ -45,16 +46,20 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
             dangerouslySetInnerHTML={{ __html: safeHtmlString(insertUserName(props.title)) ?? ''}}
           />
           <div className={styles.welcomeMessageContainer}>
-            <div className={styles.welcomeMessage} style={{ 
-              color: props.subTextColor, 
-              fontSize: props.subTextSize, 
-              fontWeight: props.subTextWeight 
+            <div className={styles.welcomeMessage} 
+              style={{ 
+                color: props.subTextColor, 
+                fontSize: props.subTextSize, 
+                fontWeight: props.subTextWeight,
+                margin: props.subTextMargin
               }}
               dangerouslySetInnerHTML={{ __html: safeHtmlString(props.subText) ?? ''}}
             />
-            <div className={styles.headerBackgroundImagePlaceHolder} />
+            <div className={styles.headerBackgroundImagePlaceHolder} 
+              style={{display: props.imagePosition === 'none' ? 'inherit' : 'none'}} 
+            />
           </div>
-          <div className={styles.button}>
+          <div className={styles.button} style={{display: props.btnPrimaryText || props.btnSecondaryText ? 'inherit' : 'none'}}>
             {props.btnPrimaryText && props.btnPrimaryUrl && (
               <Link
                 href={props.btnPrimaryUrl}
@@ -87,7 +92,11 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
         {props.imagePosition && props.imagePosition.toLocaleLowerCase() === 'aside' && (
           <div className={`${styles.asideImg}`}
           aria-hidden="true"
-          style={{flex: '1', backgroundImage: `url(${props.imageUrl ? props.imageUrl : props.uploadImage})`, backgroundSize: props.imageSize, minWidth: props.minImgWidth}}>
+          style={{
+            flex: '1', 
+            backgroundImage: `url(${props.imageUrl ? props.imageUrl : props.uploadImage})`, backgroundSize: props.imageSize, minWidth: props.minImgWidth,
+            display: props.imagePosition === 'none' ? 'none' : 'block'
+          }}>
             &nbsp;
           </div>
         )}

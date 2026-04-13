@@ -23,6 +23,7 @@ export interface ICustomWelcomeBannerWebPartProps {
   subTextAlign: string;
   subTextSize: string;
   subTextWeight: string;
+  subTextMargin: string;
   btnPrimaryText: string;
   btnPrimaryUrl: string;
   btnPrimaryTarget: string;
@@ -43,7 +44,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
 
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
-  private _fileInput: HTMLInputElement;
+  private _fileInput: HTMLInputElement | undefined;
 
   public render(): void {
     const element: React.ReactElement<ICustomWelcomeBannerProps> = React.createElement(
@@ -59,6 +60,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         subTextColor: this.properties.subTextColor,
         subTextSize: this.properties.subTextSize,
         subTextWeight: this.properties.subTextWeight,
+        subTextMargin: this.properties.subTextMargin,
         btnPrimaryText: this.properties.btnPrimaryText,
         btnPrimaryUrl: this.properties.btnPrimaryUrl,
         btnPrimaryTarget: this.properties.btnPrimaryTarget,
@@ -212,6 +214,10 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                 PropertyPaneTextField('subTextWeight', {
                   label: 'Sub Text Weight',
                   description: 'The weight of the text below the heading.',
+                }),
+                PropertyPaneTextField('subTextMargin', {
+                  label: 'Sub Text Margin',
+                  description: 'The margin of the text below the heading.',
                 }),
                 PropertyPaneTextField('btnPrimaryText', {
                   label: 'Primary Button Text',
