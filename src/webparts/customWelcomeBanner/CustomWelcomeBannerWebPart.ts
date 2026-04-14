@@ -4,7 +4,9 @@ import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
   PropertyPaneButton,
-  PropertyPaneTextField
+  PropertyPaneTextField,
+  PropertyPaneChoiceGroup,
+  PropertyPaneDropdown
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
@@ -37,13 +39,19 @@ export interface ICustomWelcomeBannerWebPartProps {
   uploadImage: string;
   minImgWidth: string;
   bannerPadding: string;
+  layout: string;
+  inLineText:string;
+  btnType: string;
+  verticalAlign: string;
+  horizontalAlign: string;
+  
 }
 
 export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<ICustomWelcomeBannerWebPartProps> {
 
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
-  private _fileInput: HTMLInputElement;
+  private _fileInput: HTMLInputElement | undefined;
 
   public render(): void {
     const element: React.ReactElement<ICustomWelcomeBannerProps> = React.createElement(
@@ -72,7 +80,12 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         backgroundColor: this.properties.backgroundColor,
         uploadImage: this.properties.uploadImage,
         minImgWidth: this.properties.minImgWidth,
-        bannerPadding: this.properties.bannerPadding
+        bannerPadding: this.properties.bannerPadding,
+        layout: this.properties.layout,
+        inLineText: this.properties.inLineText,
+        btnType: this.properties.btnType,
+        verticalAlign: this.properties.verticalAlign,
+        horizontalAlign: this.properties.horizontalAlign,
       }
     );
 
@@ -160,7 +173,18 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
     this._fileInput.click();
   };
 
+  protected onPropertyPaneFieldChanged(propertyPath: string): void {
+    console.log(`Property pane field changed: ${propertyPath}`);
+    if (propertyPath === 'layout') {
+      this.context.propertyPane.refresh();
+    }
+  }
+
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+
+    const isRegular = this.properties.layout === 'regular';
+    const isInline = this.properties.layout === 'inline';
+    
 
     if (!this.properties.btnPadding) 
       this.properties.btnPadding = '10px 15px';
@@ -178,6 +202,19 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         {
           groups: [
             {
+              groupName: "Layout",
+                groupFields: [
+                  PropertyPaneChoiceGroup('layout', {
+                    label: 'Banner Layout',
+                    options: [
+                      { key: 'regular', text: 'Regular Banner' },
+                      { key: 'inline', text: 'Inline Banner' }
+                    ]
+                  })
+                ]
+            },
+            ...(isRegular ? [{
+              groupName: "RegularBanner",
               groupFields: [
                 PropertyPaneTextField('title', {
                   label: 'Title',
@@ -276,8 +313,56 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                   placeholder: '20px 20px'
                 }),
               ]
-            }
-          ]
+            }]: []),
+            
+            ...(isInline ? [{
+              groupName:"Inline Banner",
+              groupFields: [
+                 PropertyPaneTextField('inLineText', {
+                  label: 'Inline Text',
+                  description: 'The text for the inline banner.',
+                  onGetErrorMessage: this.validateEmptyField.bind(this),
+                }),
+                 PropertyPaneTextField('imageUrl', {
+                  label: 'Image URL',
+                  description: 'The URL for the image.',
+                }),
+                PropertyPaneButton('uploadButton', {
+                  text: 'Upload Image',
+                  description: 'Upload an image from your computer. This will automatically clear the "Image URL" field.',
+                  buttonType: 3,
+                  onClick: this.handleFileUpload
+                }),
+                PropertyPaneChoiceGroup('btnType', {
+                  label: 'Button Type',
+                  options: [
+                    { key: 'Primary', text: 'Primary Button' },
+                    { key: 'Default', text: 'Default Button' }
+                  ]
+                }),                
+                PropertyPaneDropdown('verticalAlign', {
+                  label: 'Align Items',
+                  options: [
+                    { key: 'start', text: 'Left' },
+                    { key: 'center', text: 'Center' },
+                    { key: 'end', text: 'Right' },
+                  ]
+                }),
+                 PropertyPaneDropdown('horizontalAlign', {
+                  label: 'Horizontal Alignment',
+                  options: [
+                    { key: 'start', text: 'Left' },
+                    { key: 'center', text: 'Center' },
+                    { key: 'end', text: 'Right' },
+                    { key: 'space-around', text: 'Space around' },
+                    { key: 'space-between', text: 'Space between' },
+                    { key: 'space-evenly', text: 'Space evenly' },
+                  ]
+                }),
+
+                
+              ]
+            }]:[])]
         }
       ]
     };

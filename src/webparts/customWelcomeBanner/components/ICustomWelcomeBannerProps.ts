@@ -24,4 +24,9 @@ export interface ICustomWelcomeBannerProps {
   backgroundColor: string;
   uploadImage: string
   bannerPadding: string;
+  layout: string;
+  inLineText:string;
+  btnType: string;
+  verticalAlign: string;
+  horizontalAlign: string;
 }

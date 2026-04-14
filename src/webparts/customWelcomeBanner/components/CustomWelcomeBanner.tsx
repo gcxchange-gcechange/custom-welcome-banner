@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import styles from "./CustomWelcomeBanner.module.scss";
 import { ICustomWelcomeBannerProps } from "./ICustomWelcomeBannerProps";
 import { escape } from "@microsoft/sp-lodash-subset";
-import { PrimaryButton, DefaultButton, useTheme, Link } from "@fluentui/react";
+import { PrimaryButton, DefaultButton, useTheme, Link, Stack, Image } from "@fluentui/react";
 
 
 const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
@@ -21,7 +23,18 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
   const bannerId = 'gcx-banner-' + new Date().getTime();
 
+console.log("hori", props.verticalAlign)
   return (
+    <>
+    {props.layout === "inline" ? (
+      <Stack horizontal verticalAlign={props.verticalAlign as any} horizontalAlign={props.horizontalAlign as any}>
+        <Image src={props.imageUrl || props.uploadImage} alt="banner" />
+        <h3>{props.inLineText}</h3>
+        {props.btnType === 'Primary' &&  <PrimaryButton/>}
+        {props.btnType === "Default" && <DefaultButton/>}
+
+      </Stack>
+    ) : (
     <section
       className={`${styles.customWelcomeBanner} ${props.hasTeamsContext ? styles.teams : ""}`}
       aria-labelledby={bannerId}
@@ -94,6 +107,8 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
       </div>
     </section>
+    )}
+    </>
   );
 };
 
