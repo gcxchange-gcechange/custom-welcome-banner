@@ -4,7 +4,7 @@ import * as React from "react";
 import styles from "./CustomWelcomeBanner.module.scss";
 import { ICustomWelcomeBannerProps } from "./ICustomWelcomeBannerProps";
 import { escape } from "@microsoft/sp-lodash-subset";
-import { PrimaryButton, DefaultButton, useTheme, Link, Stack, Image } from "@fluentui/react";
+import { PrimaryButton, DefaultButton, useTheme, Link, Stack, Image, StackItem, Icon } from "@fluentui/react";
 
 
 const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
@@ -23,17 +23,19 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
   const bannerId = 'gcx-banner-' + new Date().getTime();
 
-console.log("hori", props.verticalAlign)
+
   return (
     <>
     {props.layout === "inline" ? (
+      <div style={{background: props.bckGrndColor, height: props.height}}>
       <Stack horizontal verticalAlign={props.verticalAlign as any} horizontalAlign={props.horizontalAlign as any}>
-        <Image src={props.imageUrl || props.uploadImage} alt="banner" />
-        <h3>{props.inLineText}</h3>
-        {props.btnType === 'Primary' &&  <PrimaryButton/>}
-        {props.btnType === "Default" && <DefaultButton/>}
-
+        <Image src={props.imageUrl || props.uploadImage} alt="banner" /> 
+        <Icon iconName={props.iconPicker} style={{color: props.color, fontSize:'25px', paddingRight:'20px'}} />  
+        <div dangerouslySetInnerHTML={{ __html: safeHtmlString(props.htmlCode) }} /> 
+        <StackItem>{props.btnType === 'Primary' && <PrimaryButton styles={{root: {backgroundColor: props.color}}}>{props.btnText}</PrimaryButton>}</StackItem>
+        
       </Stack>
+      </div>
     ) : (
     <section
       className={`${styles.customWelcomeBanner} ${props.hasTeamsContext ? styles.teams : ""}`}

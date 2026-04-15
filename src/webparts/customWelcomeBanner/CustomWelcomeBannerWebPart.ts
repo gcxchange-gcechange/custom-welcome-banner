@@ -6,7 +6,8 @@ import {
   PropertyPaneButton,
   PropertyPaneTextField,
   PropertyPaneChoiceGroup,
-  PropertyPaneDropdown
+  PropertyPaneDropdown,
+  PropertyPaneSlider
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
@@ -14,6 +15,9 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import * as strings from 'CustomWelcomeBannerWebPartStrings';
 import CustomWelcomeBanner from './components/CustomWelcomeBanner';
 import { ICustomWelcomeBannerProps } from './components/ICustomWelcomeBannerProps';
+import { PropertyFieldColorPicker, PropertyFieldColorPickerStyle } from '@pnp/spfx-property-controls/lib/PropertyFieldColorPicker';
+import { PropertyFieldCodeEditor, PropertyFieldCodeEditorLanguages } from '@pnp/spfx-property-controls/lib/PropertyFieldCodeEditor';
+import { PropertyFieldIconPicker } from '@pnp/spfx-property-controls/lib/PropertyFieldIconPicker';
 
 export interface ICustomWelcomeBannerWebPartProps {
   title: string;
@@ -40,10 +44,19 @@ export interface ICustomWelcomeBannerWebPartProps {
   minImgWidth: string;
   bannerPadding: string;
   layout: string;
-  inLineText:string;
+  // inLineText:string;
   btnType: string;
   verticalAlign: string;
   horizontalAlign: string;
+  imgUrl: string;
+  uploadImg: string;
+  color: string;
+  htmlCode: string;
+  btnText: string;
+  bckGrndColor: string;
+  height: number;
+  iconPicker: string;
+ 
   
 }
 
@@ -82,10 +95,19 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         minImgWidth: this.properties.minImgWidth,
         bannerPadding: this.properties.bannerPadding,
         layout: this.properties.layout,
-        inLineText: this.properties.inLineText,
+        // inLineText: this.properties.inLineText,
         btnType: this.properties.btnType,
+        btnText: this.properties.btnText,
         verticalAlign: this.properties.verticalAlign,
         horizontalAlign: this.properties.horizontalAlign,
+        imgUrl: this.properties.imgUrl,
+        uploadImg: this.properties.uploadImg,
+        color: this.properties.color,
+        htmlCode: this.properties.htmlCode,
+        bckGrndColor: this.properties.bckGrndColor,
+        height: this.properties.height,
+        iconPicker: this.properties.iconPicker
+ 
       }
     );
 
@@ -302,7 +324,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                   description: 'The minimum width of the image',
                   placeholder: '30%'
                 }),
-                PropertyPaneTextField('backgroundColor', {
+                PropertyPaneTextField('bckGrndColor', {
                   label: 'Background Color',
                   description: 'The color of the background.',
                   placeholder: 'color, hex, or rgb'
@@ -318,16 +340,53 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
             ...(isInline ? [{
               groupName:"Inline Banner",
               groupFields: [
-                 PropertyPaneTextField('inLineText', {
-                  label: 'Inline Text',
-                  description: 'The text for the inline banner.',
-                  onGetErrorMessage: this.validateEmptyField.bind(this),
+
+                PropertyPaneSlider('height', {
+                  label: 'Height of Banner (in pixels)',
+                  min: 1,
+                  max: 200,
+                  step: 1,
+                  value: this.properties.height || 100
                 }),
-                 PropertyPaneTextField('imageUrl', {
+
+                PropertyFieldCodeEditor('htmlCode', {
+                  label: 'Edit HTML text for the banner',
+                  panelTitle: 'Edit HTML Code',
+                  initialValue: this.properties.htmlCode,
+                  onPropertyChange: this.onPropertyPaneFieldChanged,
+                  properties: this.properties,
+                  disabled: false,
+                  key: 'codeEditorFieldId',
+                  language: PropertyFieldCodeEditorLanguages.HTML,
+                  options: {
+                    wrap: true,
+                    fontSize: 20,
+                  }
+                }),
+
+                PropertyPaneTextField('bckGrndColor', {
+                  label: 'Background Color of Banner',
+                  description: 'The color of the background.',
+                  placeholder: 'color, hex, or rgb'
+                }),
+
+                PropertyFieldIconPicker('iconPicker', {
+                  currentIcon: this.properties.iconPicker,
+                  key: "iconPickerId",
+                  onSave: (icon: string) => { console.log(icon); this.properties.iconPicker = icon; },
+                  onChanged:(icon: string) => { console.log(icon);  },
+                  buttonLabel: "Icon",
+                  renderOption: "panel",
+                  properties: this.properties,
+                  onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
+                  label: "Icon Picker"              
+                }),
+                 
+                 PropertyPaneTextField('imgUrl', {
                   label: 'Image URL',
                   description: 'The URL for the image.',
                 }),
-                PropertyPaneButton('uploadButton', {
+                PropertyPaneButton('uploadImgButton', {
                   text: 'Upload Image',
                   description: 'Upload an image from your computer. This will automatically clear the "Image URL" field.',
                   buttonType: 3,
@@ -337,9 +396,26 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                   label: 'Button Type',
                   options: [
                     { key: 'Primary', text: 'Primary Button' },
-                    { key: 'Default', text: 'Default Button' }
                   ]
-                }),                
+                }),
+                PropertyPaneTextField('btnText', {
+                  label: 'Button Text',
+                  description: 'The text for the button.',
+                }),
+
+                PropertyFieldColorPicker('color', {
+                  label: 'Button Color Picker',
+                  selectedColor: this.properties.color,
+                  onPropertyChange: this.onPropertyPaneFieldChanged,
+                  properties: this.properties,
+                  disabled: false,
+                  debounce: 1000,
+                  isHidden: false,
+                  alphaSliderHidden: false,
+                  style: PropertyFieldColorPickerStyle.Full,
+                  iconName: 'Precipitation',
+                  key: 'colorFieldId'
+                }),
                 PropertyPaneDropdown('verticalAlign', {
                   label: 'Align Items',
                   options: [
