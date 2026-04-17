@@ -103,6 +103,14 @@
     line-height: 27px;
   }
 
+  :global {
+    .ms-Button--primary {
+      min-width: 100%;
+    }
+  }
+
+
+
 }
 
 
@@ -112,5 +120,7 @@
   .button{
     margin: 0px;
   }
+
+ 
 
 }

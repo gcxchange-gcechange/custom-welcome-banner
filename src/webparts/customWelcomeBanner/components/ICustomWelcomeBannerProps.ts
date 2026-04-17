@@ -36,5 +36,13 @@ export interface ICustomWelcomeBannerProps {
   htmlCode: string;
   bckGrndColor: string;
   height: number;
+  width: number;
   iconPicker: string;
+  iconColor:string;
+  iconSize: string;
+  bannerPaddingValue: number;
+  paddingRightTxt: string;
+  paddingLeftTxt: string;
+
+
 }

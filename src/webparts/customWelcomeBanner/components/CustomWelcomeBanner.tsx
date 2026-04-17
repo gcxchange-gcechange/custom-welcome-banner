@@ -23,16 +23,22 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
   const bannerId = 'gcx-banner-' + new Date().getTime();
 
+  const widthPercentage = (props.width * 100).toFixed(2) + '%';
+
 
   return (
     <>
     {props.layout === "inline" ? (
-      <div style={{background: props.bckGrndColor, height: props.height}}>
+      <div style={{background: props.bckGrndColor, height: props.height, padding: props.bannerPaddingValue, width: widthPercentage}}>
       <Stack horizontal verticalAlign={props.verticalAlign as any} horizontalAlign={props.horizontalAlign as any}>
-        <Image src={props.imageUrl || props.uploadImage} alt="banner" /> 
-        <Icon iconName={props.iconPicker} style={{color: props.color, fontSize:'25px', paddingRight:'20px'}} />  
-        <div dangerouslySetInnerHTML={{ __html: safeHtmlString(props.htmlCode) }} /> 
-        <StackItem>{props.btnType === 'Primary' && <PrimaryButton styles={{root: {backgroundColor: props.color}}}>{props.btnText}</PrimaryButton>}</StackItem>
+        {
+          props.imageUrl || props.uploadImage  
+          ?
+          ( <Image src={props.imageUrl || props.uploadImage} alt="bannerImage" /> ) 
+          : (<Icon iconName={props.iconPicker} style={{color: props.iconColor, fontSize: props.iconSize }} /> )
+        }
+        <div dangerouslySetInnerHTML={{ __html: safeHtmlString(props.htmlCode) }} style={{paddingRight:props.paddingRightTxt, paddingLeft: props.paddingLeftTxt}}/> 
+        <StackItem>{props.btnType === 'Primary' && <PrimaryButton styles={{root: {backgroundColor: props.color }}}>{props.btnText}</PrimaryButton>}</StackItem>
         
       </Stack>
       </div>
