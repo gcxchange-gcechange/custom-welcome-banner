@@ -44,6 +44,7 @@ export interface ICustomWelcomeBannerProps {
   bannerPaddingValue: number;
   paddingRightTxt: string;
   paddingLeftTxt: string;
+  buttonTextSize:string;
 
 
 }

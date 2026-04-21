@@ -64,6 +64,7 @@ export interface ICustomWelcomeBannerWebPartProps {
   paddingRightTxt: string;
   paddingLeftTxt: string;
   iconSize: string;
+  buttonTextSize:string;
 
  
   
@@ -123,6 +124,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         bannerPaddingValue: this.properties.bannerPaddingValue,
         paddingRightTxt: this.properties.paddingRightTxt,
         paddingLeftTxt: this.properties.paddingLeftTxt,
+        buttonTextSize: this.properties.buttonTextSize,
 
 
  
@@ -532,6 +534,13 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                       label: 'Button Text',
                       description: 'The text for the button.',
                     }),
+
+                    PropertyPaneTextField('buttonTextSize', {
+                      label: 'Button Text Size',
+                      description: 'The size of the button text.',
+                      placeholder: 'e.g., 16px'
+                    }),
+
 
                     PropertyFieldColorPicker('color', {
                       label: 'Button Color Picker',

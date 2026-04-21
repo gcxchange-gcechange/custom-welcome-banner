@@ -39,7 +39,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
           : (<Icon iconName={props.iconPicker} style={{color: props.iconColor, fontSize: props.iconSize }} /> )
         }
         <div dangerouslySetInnerHTML={{ __html: safeHtmlString(props.htmlCode) }} style={{paddingRight:props.paddingRightTxt, paddingLeft: props.paddingLeftTxt}}/> 
-        <StackItem>{props.btnType === 'Primary' && <PrimaryButton styles={{root: {backgroundColor: props.color }}}>{props.btnText}</PrimaryButton>}</StackItem>
+        <StackItem>{props.btnType === 'Primary' && <PrimaryButton styles={{root: {backgroundColor: props.color, fontSize: props.buttonTextSize}}}>{props.btnText}</PrimaryButton>}</StackItem>
         
       </Stack>
       </div>
