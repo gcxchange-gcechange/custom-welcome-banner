@@ -30,19 +30,17 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
   return (
     <>
     {props.layout === "inline" ? (
-      <div style={{background: props.bckGrndColor, height: props.height, padding: props.bannerPaddingValue, width: widthPercentage}}>
-      <Stack horizontal verticalAlign={props.verticalAlign as any} horizontalAlign={props.horizontalAlign as any}>
+      <Stack horizontal verticalAlign={props.verticalAlign as any} horizontalAlign={props.horizontalAlign as any}  style={{background: props.bckGrndColor, height: props.height, padding: props.bannerPaddingValue, width: widthPercentage}}>
         {
           props.imageUrl || props.uploadImage  
           ?
           ( <Image src={props.imageUrl || props.uploadImage} alt="bannerImage" /> ) 
           : (<Icon iconName={props.iconPicker} style={{color: props.iconColor, fontSize: props.iconSize }} /> )
         }
-        <div dangerouslySetInnerHTML={{ __html: safeHtmlString(props.htmlCode) }} style={{paddingRight:props.paddingRightTxt, paddingLeft: props.paddingLeftTxt}}/> 
+        <div dangerouslySetInnerHTML={{ __html: safeHtmlString(props.htmlCode) }} style={{ fontSize: props.textSize, color: props.textColor, paddingRight:props.paddingRightTxt, paddingLeft: props.paddingLeftTxt}}/> 
         <StackItem>{props.btnType === 'Primary' && <PrimaryButton styles={{root: {backgroundColor: props.color, fontSize: props.buttonTextSize}}}>{props.btnText}</PrimaryButton>}</StackItem>
         
       </Stack>
-      </div>
     ) : (
     <section
       className={`${styles.customWelcomeBanner} ${props.hasTeamsContext ? styles.teams : ""}`}
