@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import styles from "./CustomWelcomeBanner.module.scss";
 import { ICustomWelcomeBannerProps } from "./ICustomWelcomeBannerProps";
 import { escape } from "@microsoft/sp-lodash-subset";
-import { PrimaryButton, DefaultButton, useTheme, Link } from "@fluentui/react";
+import { PrimaryButton, DefaultButton, useTheme, Link, Stack, Image, StackItem, Icon } from "@fluentui/react";
 
 
 const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
@@ -22,7 +24,24 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
   const bannerId = 'gcx-banner-' + new Date().getTime();
 
+  const widthPercentage = (props.width * 100).toFixed(2) + '%';
+
+
   return (
+    <>
+    {props.layout === "inline" ? (
+      <Stack horizontal verticalAlign={props.verticalAlign as any} horizontalAlign={props.horizontalAlign as any}  style={{background: props.bckGrndColor, height: props.height, padding: props.bannerPaddingValue, width: widthPercentage}}>
+        {
+          props.imageUrl || props.uploadImage  
+          ?
+          ( <Image src={props.imageUrl || props.uploadImage} alt="bannerImage" /> ) 
+          : (<Icon iconName={props.iconPicker} style={{color: props.iconColor, fontSize: props.iconSize }} /> )
+        }
+        <div dangerouslySetInnerHTML={{ __html: safeHtmlString(props.htmlCode) }} style={{ fontSize: props.textSize, color: props.textColor, paddingRight:props.paddingRightTxt, paddingLeft: props.paddingLeftTxt}}/> 
+        <StackItem>{props.btnType === 'Primary' && <PrimaryButton styles={{root: {backgroundColor: props.color, fontSize: props.buttonTextSize}, rootHovered: {backgroundColor: props.color}}} href={props.btnLink} target="_blank">{props.btnText}</PrimaryButton>}</StackItem>
+        
+      </Stack>
+    ) : (
     <section
       className={`${styles.customWelcomeBanner} ${props.hasTeamsContext ? styles.teams : ""}`}
       aria-labelledby={bannerId}
@@ -103,6 +122,8 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
       </div>
     </section>
+    )}
+    </>
   );
 };
 

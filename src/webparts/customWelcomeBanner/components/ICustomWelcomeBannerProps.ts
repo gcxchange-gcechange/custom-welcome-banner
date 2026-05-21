@@ -25,4 +25,29 @@ export interface ICustomWelcomeBannerProps {
   backgroundColor: string;
   uploadImage: string
   bannerPadding: string;
+  layout: string;
+  // inLineText:string;
+  btnType: string;
+  btnText: string;
+  verticalAlign: string;
+  horizontalAlign: string;
+  imgUrl: string;
+  uploadImg: string;
+  color: string;
+  htmlCode: string;
+  bckGrndColor: string;
+  height: number;
+  width: number;
+  iconPicker: string;
+  iconColor:string;
+  iconSize: string;
+  bannerPaddingValue: number;
+  paddingRightTxt: string;
+  paddingLeftTxt: string;
+  buttonTextSize:string;
+  textSize: string;
+  textColor: string;
+  btnLink: string;
+
+
 }

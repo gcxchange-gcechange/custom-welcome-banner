@@ -4,7 +4,10 @@ import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
   PropertyPaneButton,
-  PropertyPaneTextField
+  PropertyPaneTextField,
+  PropertyPaneChoiceGroup,
+  PropertyPaneDropdown,
+  PropertyPaneSlider
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
@@ -12,6 +15,10 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import * as strings from 'CustomWelcomeBannerWebPartStrings';
 import CustomWelcomeBanner from './components/CustomWelcomeBanner';
 import { ICustomWelcomeBannerProps } from './components/ICustomWelcomeBannerProps';
+import { PropertyFieldColorPicker, PropertyFieldColorPickerStyle } from '@pnp/spfx-property-controls/lib/PropertyFieldColorPicker';
+import { PropertyFieldCodeEditor, PropertyFieldCodeEditorLanguages } from '@pnp/spfx-property-controls/lib/PropertyFieldCodeEditor';
+import { PropertyFieldIconPicker } from '@pnp/spfx-property-controls/lib/PropertyFieldIconPicker';
+ 
 
 export interface ICustomWelcomeBannerWebPartProps {
   title: string;
@@ -38,6 +45,32 @@ export interface ICustomWelcomeBannerWebPartProps {
   uploadImage: string;
   minImgWidth: string;
   bannerPadding: string;
+  layout: string;
+  // inLineText:string;
+  btnType: string;
+  verticalAlign: string;
+  horizontalAlign: string;
+  imgUrl: string;
+  uploadImg: string;
+  color: string;
+  htmlCode: string;
+  btnText: string;
+  bckGrndColor: string;
+  height: number;
+  width: number;
+  iconPicker: string;
+  iconColor:string;
+  bannerPaddingValue: number;
+  paddingRightTxt: string;
+  paddingLeftTxt: string;
+  iconSize: string;
+  buttonTextSize:string;
+  textSize: string;
+  textColor: string;
+  btnLink: string;
+
+ 
+  
 }
 
 export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<ICustomWelcomeBannerWebPartProps> {
@@ -74,7 +107,33 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         backgroundColor: this.properties.backgroundColor,
         uploadImage: this.properties.uploadImage,
         minImgWidth: this.properties.minImgWidth,
-        bannerPadding: this.properties.bannerPadding
+        bannerPadding: this.properties.bannerPadding,
+        layout: this.properties.layout,
+        // inLineText: this.properties.inLineText,
+        btnType: this.properties.btnType,
+        btnText: this.properties.btnText,
+        verticalAlign: this.properties.verticalAlign,
+        horizontalAlign: this.properties.horizontalAlign,
+        imgUrl: this.properties.imgUrl,
+        uploadImg: this.properties.uploadImg,
+        color: this.properties.color,
+        htmlCode: this.properties.htmlCode,
+        bckGrndColor: this.properties.bckGrndColor,
+        height: this.properties.height,
+        width: this.properties.width,
+        iconPicker: this.properties.iconPicker,
+        iconColor: this.properties.iconColor,
+        iconSize: this.properties.iconSize,
+        bannerPaddingValue: this.properties.bannerPaddingValue,
+        paddingRightTxt: this.properties.paddingRightTxt,
+        paddingLeftTxt: this.properties.paddingLeftTxt,
+        buttonTextSize: this.properties.buttonTextSize,
+        textSize: this.properties.textSize,
+        textColor: this.properties.textColor,
+        btnLink: this.properties.btnLink,
+
+
+ 
       }
     );
 
@@ -130,6 +189,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
   }
 
   private handleFileUpload = (): void => {
+    console.log("handle file upload called");
     if (!this._fileInput) {
       this._fileInput = document.createElement('input');
       this._fileInput.type = 'file';
@@ -162,7 +222,32 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
     this._fileInput.click();
   };
 
+  private handleClearImage = (): void => {
+    console.log("img", this.properties)
+    this.properties.uploadImage = '';
+    this.properties.imageUrl = '';
+    this.context.propertyPane.refresh();
+    this.render();
+  }
+
+  private clearIcon = (): void => {
+    this.properties.iconPicker = '';
+    this.context.propertyPane.refresh();
+    this.render();
+  }
+
+  protected onPropertyPaneFieldChanged(propertyPath: string): void {
+    console.log(`Property pane field changed: ${propertyPath}`);
+    if (propertyPath === 'layout') {
+      this.context.propertyPane.refresh();
+    }
+  }
+
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+
+    const isRegular = this.properties.layout === 'regular';
+    const isInline = this.properties.layout === 'inline';
+    
 
     if (!this.properties.btnPadding) 
       this.properties.btnPadding = '10px 15px';
@@ -178,8 +263,22 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
     return {
       pages: [
         {
+          displayGroupsAsAccordion: true,
           groups: [
             {
+              groupName: "Layout",
+                groupFields: [
+                  PropertyPaneChoiceGroup('layout', {
+                    label: 'Banner Layout',
+                    options: [
+                      { key: 'regular', text: 'Regular Banner' },
+                      { key: 'inline', text: 'Inline Banner' }
+                    ]
+                  })
+                ]
+            },
+            ...(isRegular ? [{
+              groupName: "RegularBanner",
               groupFields: [
                 PropertyPaneTextField('title', {
                   label: 'Title',
@@ -271,7 +370,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                   description: 'The minimum width of the image',
                   placeholder: '30%'
                 }),
-                PropertyPaneTextField('backgroundColor', {
+                PropertyPaneTextField('bckGrndColor', {
                   label: 'Background Color',
                   description: 'The color of the background.',
                   placeholder: 'color, hex, or rgb'
@@ -282,7 +381,207 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                   placeholder: '20px 20px'
                 }),
               ]
-            }
+            }]: []),
+            
+            ...(isInline ? 
+              [
+                {
+                  groupName:"Banner Container Configuration",
+                  isCollapsed:true,
+                  groupFields: [
+                    PropertyPaneSlider('height', {
+                      label: 'Height of Banner (in pixels)',
+                      min: 1,
+                      max: 200,
+                      step: 1,
+                      value: this.properties.height || 100
+                    }),
+
+                    PropertyPaneSlider('width', {
+                      label: 'Width of Banner (in percentage)',
+                      min: 1,
+                      max: 100,
+                      step: 1,
+                      value: this.properties.width || 100
+                    }),
+                    
+                    PropertyPaneTextField("bannerPaddingValue", {
+                      label: "Banner Padding Value",
+                      description: "The padding value for the banner (in pixels)",
+                      placeholder: '20px'
+                    }),
+
+                    PropertyPaneTextField('bckGrndColor', {
+                      label: 'Background Color of Banner',
+                      description: 'The color of the background.',
+                      placeholder: 'color, hex, or rgb'
+                    }),
+
+                  ]
+                },
+                {
+                  groupName: "Content Alignment",
+                  isCollapsed: true,
+                  groupFields: [
+                    PropertyPaneDropdown('verticalAlign', {
+                      label: 'Vertical Alignment',
+                      options: [
+                        { key: 'start', text: 'Left' },
+                        { key: 'center', text: 'Center' },
+                        { key: 'end', text: 'Right' },
+                      ]
+                    }),
+                    PropertyPaneDropdown('horizontalAlign', {
+                      label: 'Horizontal Alignment',
+                      options: [
+                        { key: 'start', text: 'Left' },
+                        { key: 'center', text: 'Center' },
+                        { key: 'end', text: 'Right' },
+                        { key: 'space-around', text: 'Space around' },
+                        { key: 'space-between', text: 'Space between' },
+                        { key: 'space-evenly', text: 'Space evenly' },
+                    ]
+                    }),
+                  ]
+                },
+                {
+                  groupName: "Text Configuration",
+                  isCollapsed: true,
+                  groupFields: [
+                    PropertyFieldCodeEditor('htmlCode', {
+                      label: 'Edit HTML Code',
+                      panelTitle: 'Edit HTML Code',
+                      initialValue: this.properties.htmlCode,
+                      onPropertyChange: this.onPropertyPaneFieldChanged,
+                      properties: this.properties,
+                      disabled: false,
+                      key: 'codeEditorFieldId',
+                      language: PropertyFieldCodeEditorLanguages.HTML,
+                      options: {
+                        wrap: true,
+                        fontSize: 20,
+                      }
+                    }),
+                     PropertyPaneTextField('textSize', {
+                      label: 'Text Size',
+                      description: 'The size of the text.',
+                      placeholder: 'e.g., 20px'
+                    }),
+                    PropertyPaneTextField('textColor', {
+                      label: 'Text Color',
+                      description: 'The color of the text.',
+                      placeholder: 'color, hex, or rgb'
+                    }),
+                  ]
+                },
+
+                {
+                  groupName:"Icon Configuration",
+                  isCollapsed:true,
+                  groupFields: [
+
+                    PropertyFieldIconPicker('iconPicker', {
+                      currentIcon: this.properties.iconPicker,
+                      key: "iconPickerId",
+                      onSave: (icon: string) => { console.log(icon); this.properties.iconPicker = icon; },
+                      onChanged:(icon: string) => { console.log(icon);  },
+                      buttonLabel: "Icon",
+                      renderOption: "dialog",
+                      properties: this.properties,
+                      onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
+                      label: "Icon Picker"              
+                    }),
+
+                    PropertyPaneButton('clearIcon', {
+                      text: 'Clear Icon',
+                      buttonType: 1,
+                      onClick: this.clearIcon
+                    }),
+
+                    PropertyPaneTextField('iconColor', {
+                      label: 'Icon Color',
+                      description: 'The color of the icon.',
+                      placeholder: 'color, hex, or rgb'
+                    }),
+
+                    PropertyPaneTextField('iconSize', {
+                      label: 'Icon Size',
+                      description: 'The size of the icon.',
+                      placeholder: 'e.g., 20px'
+                    }),
+
+                  ]
+                },
+                 {
+                  groupName:"Image Configuration",
+                  isCollapsed:true,
+                  groupFields: [
+                    PropertyPaneTextField('imgUrl', {
+                      label: 'Image URL',
+                      description: 'The URL for the image.',
+                    }),
+                    PropertyPaneButton('uploadImgButton', {
+                      text: 'Upload Image',
+                      description: 'Upload an image from your computer. This will automatically clear the "Image URL" field.',
+                      buttonType: 3,
+                      onClick: this.handleFileUpload
+                    }),
+
+                    PropertyPaneButton('resetImgBtn', {
+                      text: 'Clear Image',
+                      description: 'Automatically clear the "Upload Image" fields.',
+                      buttonType: 1,
+                      onClick: this.handleClearImage.bind(this)
+
+                    }),
+                  ]
+                },
+                 {
+                  groupName:"Button Configuration",
+                  isCollapsed:true,
+                  groupFields: [
+                    PropertyPaneChoiceGroup('btnType', {
+                      label: 'Button Type',
+                      options: [
+                        { key: 'Primary', text: 'Primary Button' },
+                      ]
+                    }),
+                     PropertyPaneTextField('btnLink', {
+                      label: 'Button URL',
+                      description: 'The URL for the button.',
+                    }),
+                    PropertyPaneTextField('btnText', {
+                      label: 'Button Text',
+                      description: 'The text for the button.',
+                    }),
+
+                    PropertyPaneTextField('buttonTextSize', {
+                      label: 'Button Text Size',
+                      description: 'The size of the button text.',
+                      placeholder: 'e.g., 16px'
+                    }),
+
+
+                    PropertyFieldColorPicker('color', {
+                      label: 'Button Color Picker',
+                      selectedColor: this.properties.color,
+                      onPropertyChange: this.onPropertyPaneFieldChanged,
+                      properties: this.properties,
+                      disabled: false,
+                      debounce: 1000,
+                      isHidden: false,
+                      alphaSliderHidden: false,
+                      style: PropertyFieldColorPickerStyle.Full,
+                      iconName: 'Precipitation',
+                      key: 'colorFieldId',
+                  
+                    }),
+                  ]
+                },
+
+          
+          ]
+            :[])
           ]
         }
       ]
