@@ -67,6 +67,7 @@ export interface ICustomWelcomeBannerWebPartProps {
   buttonTextSize:string;
   textSize: string;
   textColor: string;
+  btnLink: string;
 
  
   
@@ -129,6 +130,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         buttonTextSize: this.properties.buttonTextSize,
         textSize: this.properties.textSize,
         textColor: this.properties.textColor,
+        btnLink: this.properties.btnLink,
 
 
  
@@ -543,6 +545,10 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                       options: [
                         { key: 'Primary', text: 'Primary Button' },
                       ]
+                    }),
+                     PropertyPaneTextField('btnLink', {
+                      label: 'Button URL',
+                      description: 'The URL for the button.',
                     }),
                     PropertyPaneTextField('btnText', {
                       label: 'Button Text',

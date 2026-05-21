@@ -47,6 +47,7 @@ export interface ICustomWelcomeBannerProps {
   buttonTextSize:string;
   textSize: string;
   textColor: string;
+  btnLink: string;
 
 
 }
