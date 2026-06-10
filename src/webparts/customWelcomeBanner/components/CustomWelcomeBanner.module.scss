@@ -4,15 +4,16 @@
   overflow: hidden;
   color: "[theme:bodyText, default: #323130]";
   color: var(--bodyText);
-  
-  &.teams {
-    font-family: $ms-font-family-fallbacks;
-  }
 
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom right;
 }
+
+.teams {
+    font-family: $ms-font-family-fallbacks;
+  }
+  
 .welcomeWrapper{
   display: flex;
   margin: auto;
