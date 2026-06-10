@@ -42,12 +42,11 @@ export interface ICustomWelcomeBannerProps {
   iconColor:string;
   iconSize: string;
   bannerPaddingValue: number;
-  paddingRightTxt: string;
-  paddingLeftTxt: string;
+  paddingTxt: string;
   buttonTextSize:string;
   textSize: string;
   textColor: string;
   btnLink: string;
-
+  paddingIcon: string;
 
 }

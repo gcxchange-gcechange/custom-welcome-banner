@@ -61,13 +61,13 @@ export interface ICustomWelcomeBannerWebPartProps {
   iconPicker: string;
   iconColor:string;
   bannerPaddingValue: number;
-  paddingRightTxt: string;
-  paddingLeftTxt: string;
+  paddingTxt: string;
   iconSize: string;
   buttonTextSize:string;
   textSize: string;
   textColor: string;
   btnLink: string;
+  paddingIcon: string;
 
  
   
@@ -125,12 +125,12 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         iconColor: this.properties.iconColor,
         iconSize: this.properties.iconSize,
         bannerPaddingValue: this.properties.bannerPaddingValue,
-        paddingRightTxt: this.properties.paddingRightTxt,
-        paddingLeftTxt: this.properties.paddingLeftTxt,
+        paddingTxt: this.properties.paddingTxt,
         buttonTextSize: this.properties.buttonTextSize,
         textSize: this.properties.textSize,
         textColor: this.properties.textColor,
         btnLink: this.properties.btnLink,
+        paddingIcon: this.properties.paddingIcon,
 
 
  
@@ -472,6 +472,11 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                       description: 'The color of the text.',
                       placeholder: 'color, hex, or rgb'
                     }),
+                    PropertyPaneTextField('paddingTxt', {
+                      label: 'Padding',
+                      description: "Padding for the text",
+                      placeholder: 'e.g., 0px 5px 10px 10px'
+                    }),
                   ]
                 },
 
@@ -508,6 +513,11 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                       label: 'Icon Size',
                       description: 'The size of the icon.',
                       placeholder: 'e.g., 20px'
+                    }),
+                     PropertyPaneTextField('paddingIcon', {
+                      label: 'Icon Padding',
+                      description: "Padding for the icon",
+                      placeholder: 'e.g., 0px 5px 10px 10px'
                     }),
 
                   ]

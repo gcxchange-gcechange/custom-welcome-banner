@@ -35,9 +35,9 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
           props.imageUrl || props.uploadImage  
           ?
           ( <Image src={props.imageUrl || props.uploadImage} alt="bannerImage" /> ) 
-          : (<Icon iconName={props.iconPicker} style={{color: props.iconColor, fontSize: props.iconSize }} /> )
+          : (<Icon iconName={props.iconPicker} style={{color: props.iconColor, fontSize: props.iconSize, padding: props.paddingIcon }} /> )
         }
-        <div dangerouslySetInnerHTML={{ __html: safeHtmlString(props.htmlCode) }} style={{ fontSize: props.textSize, color: props.textColor, paddingRight:props.paddingRightTxt, paddingLeft: props.paddingLeftTxt}}/> 
+        <div dangerouslySetInnerHTML={{ __html: safeHtmlString(props.htmlCode) }} style={{ fontSize: props.textSize, color: props.textColor, padding:props.paddingTxt}}/> 
         <StackItem>{props.btnType === 'Primary' && <PrimaryButton styles={{root: {backgroundColor: props.color, fontSize: props.buttonTextSize}, rootHovered: {backgroundColor: props.color}}} href={props.btnLink} target="_blank">{props.btnText}</PrimaryButton>}</StackItem>
         
       </Stack>
