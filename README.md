@@ -21,7 +21,7 @@
 
 ## Property Pane Demo
 
-[![Watch Demo](./src/webparts/customWelcomeBanner/assets/.png)](https://github.com/gcxchange-gcechange/custom-welcome-banner/blob/Upgrade-SPFX-1.22.2/src/webparts/customWelcomeBanner/assets/InLineBanner.mp4)
+![Watch Demo](./src/webparts/customWelcomeBanner/assets/InLineBanner.gif)
 
 ### Settings / Property Pane:
 
