@@ -1,5 +1,11 @@
 @import '~@fluentui/react/dist/sass/References.scss';
 
+:global {
+  #workbenchPageContent, .CanvasComponent.LCS .CanvasZone {
+    max-width: 100% !important;
+  }
+}
+
 .customWelcomeBanner {
   overflow: hidden;
   color: "[theme:bodyText, default: #323130]";
@@ -98,6 +104,14 @@
     line-height: 27px;
   }
 
+  :global {
+    .ms-Button--primary {
+      min-width: 100%;
+    }
+  }
+
+
+
 }
 
 
@@ -107,5 +121,7 @@
   .button{
     margin: 0px;
   }
+
+ 
 
 }
