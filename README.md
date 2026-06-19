@@ -21,11 +21,19 @@
 
 ## Property Pane Demo
 
-![Watch the demo][(https://github.com/gcxchange-gcechange/custom-welcome-banner/blob/Upgrade-SPFX-1.22.2/src/webparts/customWelcomeBanner/assets/InLineBanner.mp4](https://github.com/gcxchange-gcechange/custom-welcome-banner/blob/Upgrade-SPFX-1.22.2/src/webparts/customWelcomeBanner/assets/InLineBanner.mp4))
+[![Watch Demo](./src/webparts/customWelcomeBanner/assets/.png)](https://github.com/gcxchange-gcechange/custom-welcome-banner/blob/Upgrade-SPFX-1.22.2/src/webparts/customWelcomeBanner/assets/InLineBanner.mp4)
 
 ### Settings / Property Pane:
 
 ![Property Pane](./src/webparts/customWelcomeBanner/assets/property_pane.png)
+
+## InLine Banner
+
+![Property Pane](./src/webparts/customWelcomeBanner/assets/information_banner.png)
+
+### InLine Banner Settings / Property Pane:
+
+![Property Pane](./src/webparts/customWelcomeBanner/assets/Banner_PropertyPane.png)
 
 ## Prerequisites
 None
