@@ -19,6 +19,10 @@
 
 ![Webpart](./src/webparts/customWelcomeBanner/assets/webpart.png)
 
+## Property Pane Demo
+
+![Watch the demo](./src/webparts/customWelcomeBanner/assets/InLineBanner.mp4)
+
 ### Settings / Property Pane:
 
 ![Property Pane](./src/webparts/customWelcomeBanner/assets/property_pane.png)
@@ -40,33 +44,37 @@ None
 
 ## Version history
 
-| Version | Date         | Comments                |
-| ------- | ------------ | ----------------------- |
-| 1.0     | Jul 29, 2022 | Initial release         |
-| 1.1     | Jan 10, 2024 | Upgraded to SPFX 1.17.4 |
-| 2.0     | Sep 11, 2025 | Upgraded to SPFX 1.21.1 |
-
+| Version | Date          | Comments                |
+| ------- | ------------  | ----------------------- |
+| 1.0     | Jul 29, 2022  | Initial release         |
+| 1.1     | Jan 10, 2024  | Upgraded to SPFX 1.17.4 |
+| 2.0     | Sep 11, 2025  | Upgraded to SPFX 1.21.1 |
+| 2.1     | June 19, 2025 | Upgraded to SPFX 1.22.2 |
 
 ## Minimal Path to Awesome
-
 - Clone this repository
 - Ensure that you are at the solution folder
-- In the command-line run:
-  - **npm install**
-  - **gulp serve**
+- To install the dependencies, in the command-line run:
+  - `npm install -g @rushstack/heft`
+  - `npm install`
 - You will need to add your client id and azure function to the `clientId` and `url` classs members at the top of the filename.tsx file.
 - To debug in the front end:
-  - go to the `serve.json` file and update `initialPage` to `https://domain-name.sharepoint.com/_layouts/15/workbench.aspx`
-  - Run the command **gulp serve**
-- To deploy: in the command-line run
-  - **gulp bundle --ship**
-  - **gulp package-solution --ship**
-- Add the webpart to your tenant app store
+  - go to the `serve.json` file and update `initialPage` to `https://your-domain-name.sharepoint.com/_layouts/15/workbench.aspx`
+  - In the command-line run:
+    - `heft start`
+    - You will need to add your client id and azure function to the clientId and url classs members in the SCW.tsx file.
+- To deploy:
+  - In the command-line run:
+    - `heft build --production`
+    - `heft package-solution --production`
+  - Add the webpart to your tenant app store
+- Approve the web API permissions
 - Add the Webpart to a page
-- Edit the webpart
+- Modify the property pane according to your requirements
   - Enter the Greeting, Welcome Message and Text for Button in required language in the property pane (setting)
   - Enter the URL for button in the property pane (setting)
-- Save and publish the page
+  - Save and publish the page
+
 
 ## Disclaimer
 
