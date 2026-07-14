@@ -78,7 +78,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
               style={{display: props.imagePosition === 'none' ? 'inherit' : 'none'}} 
             />
           </div>
-          <div  style={{display: props.btnPrimaryText || props.btnSecondaryText ? 'inherit' : 'none'}}>
+          <div  style={{display: props.btnPrimaryText || props.btnSecondaryText ? 'inherit' : 'none', marginTop:'30px'}}>
             {props.btnPrimaryText && props.btnPrimaryUrl && (
               <Link
                 href={props.btnPrimaryUrl}
