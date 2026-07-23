@@ -45,6 +45,8 @@
 
 .welcomeMessageContainer {
   display: flex;
+  flex-wrap: wrap;
+  width: 80%;
 }
 
 .welcomeMessage {
