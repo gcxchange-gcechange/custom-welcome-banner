@@ -9,6 +9,20 @@ import { PrimaryButton, DefaultButton, useTheme, Link, Stack, Image, StackItem, 
 
 const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
 
+  const [bannerLayout, setBannerLayout] =  React.useState('');
+
+  const {layout} = props;
+
+  React.useEffect(() => {
+    if (layout === 'regular') {
+      setBannerLayout('regular')
+    } else if (layout === "inline"){    
+      setBannerLayout('inline')
+    }
+  }, [layout]);
+
+
+
   const theme = useTheme();
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const sanitizeHtml = require('sanitize-html');
@@ -27,9 +41,11 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
   const widthPercentage = (props.width * 100).toFixed(2) + '%';
 
 
+
+
   return (
     <>
-    {props.layout === "inline" ? (
+    {bannerLayout === "inline" ? (
       <Stack horizontal verticalAlign={props.verticalAlign as any} horizontalAlign={props.horizontalAlign as any}  style={{background: props.bckGrndColor, height: props.height, padding: props.bannerPaddingValue, width: widthPercentage}}>
         {
           props.imageUrl || props.uploadImage  
@@ -78,7 +94,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
               style={{display: props.imagePosition === 'none' ? 'inherit' : 'none'}} 
             />
           </div>
-          <div  style={{display: props.btnPrimaryText || props.btnSecondaryText ? 'inherit' : 'none', marginTop:'30px'}}>
+          <div className={styles.button} style={{display: props.btnPrimaryText || props.btnSecondaryText ? 'inherit' : 'none'}}>
             {props.btnPrimaryText && props.btnPrimaryUrl && (
               <Link
                 href={props.btnPrimaryUrl}
