@@ -86,7 +86,7 @@ const CustomWelcomeBanner: React.FC<ICustomWelcomeBannerProps> = (props) => {
                 rel="noreferrer"
               >
                 <PrimaryButton 
-                  styles={{ root: { padding: props.btnPadding } }}
+                  styles={{ root: { padding: props.btnPadding, fontSize: props.btnPrimaryTextSize } }}
                 >
                   {props.btnPrimaryText}
                 </PrimaryButton>

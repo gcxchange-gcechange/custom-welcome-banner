@@ -32,6 +32,7 @@ export interface ICustomWelcomeBannerWebPartProps {
   subTextWeight: string;
   subTextMargin: string;
   btnPrimaryText: string;
+  btnPrimaryTextSize: string;
   btnPrimaryUrl: string;
   btnPrimaryTarget: string;
   btnSecondaryText: string;
@@ -95,6 +96,7 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
         subTextWeight: this.properties.subTextWeight,
         subTextMargin: this.properties.subTextMargin,
         btnPrimaryText: this.properties.btnPrimaryText,
+        btnPrimaryTextSize: this.properties.btnPrimaryTextSize,
         btnPrimaryUrl: this.properties.btnPrimaryUrl,
         btnPrimaryTarget: this.properties.btnPrimaryTarget,
         btnSecondaryText: this.properties.btnSecondaryText,
@@ -321,6 +323,10 @@ export default class CustomWelcomeBannerWebPart extends BaseClientSideWebPart<IC
                 PropertyPaneTextField('btnPrimaryText', {
                   label: 'Primary Button Text',
                   description: 'The text for the primary button.',
+                }),
+                PropertyPaneTextField('btnPrimaryTextSize', {
+                  label: 'Primary Button Text Size',
+                  description: 'The size of the primary button text.',
                 }),
                 PropertyPaneTextField('btnPrimaryUrl', {
                   label: 'Primary Button URL',
