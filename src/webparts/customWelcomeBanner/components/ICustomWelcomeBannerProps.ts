@@ -12,6 +12,7 @@ export interface ICustomWelcomeBannerProps {
   subTextWeight: string;
   subTextMargin: string;
   btnPrimaryText: string;
+  btnPrimaryTextSize: string;
   btnPrimaryUrl: string;
   btnPrimaryTarget: string;
   btnSecondaryText: string;

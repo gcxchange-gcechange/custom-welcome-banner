@@ -7,7 +7,7 @@
       "@microsoft/microsoft-graph-client": "3.0.2",
       "@microsoft/teams-js": "2.24.0"
     },
-    "version": "1.21.1",
+    "version": "1.22.2",
     "libraryName": "custom-welcome-banner",
     "libraryId": "81c44e4c-fc00-4d3d-8660-6e932f546f91",
     "environment": "spo",
